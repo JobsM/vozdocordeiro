@@ -427,7 +427,6 @@
             Lista VIP próxima do encerramento
         </div>
         
-        <h1>Esgotado</h1>
         <p class="subtitle">A coleção inicial arrematada pelos nossos primeiros convidados. <strong>Antecipe-se e confira os detalhes das peças para a nova leva.</strong></p>
 
         <!-- CAMISETAS -->
@@ -456,33 +455,36 @@
                 <div class="shirt-title">Preta (Estampa Branca)</div>
                 <div class="image-container" onclick="abrirZoom('bw')">
                     <img id="img-bw" 
-                         src="img/t-shirt-main-logo-front.webp" 
+                         src="img/t-shirt-hanger-front-wb.webp" 
                          class="shirt-img" alt="Camiseta Preta Frente">
                     <div class="sold-out-overlay">Esgotado</div>
                     <div class="zoom-hint">⛶</div>
                 </div>
                 <div class="thumbnails">
-                    <img src="img/t-shirt-main-logo-front.webp" class="thumb active" id="thumb-frente-bw" onclick="trocarImagem('bw', 'frente')" title="Vista Frente">
+                    <img src="img/t-shirt-hanger-front-wb.webp" class="thumb active" id="thumb-frente-bw" onclick="trocarImagem('bw', 'frente')" title="Vista Frente">
                     <img src="img/t-shirt-bw-back-jesus.webp" class="thumb" id="thumb-verso-bw" onclick="trocarImagem('bw', 'verso')" title="Detalhe Verso">
                     <img src="img/t-shirt-bw-back-blonde.webp" class="thumb" id="thumb-corpo-bw" onclick="trocarImagem('bw', 'corpo')" title="Verso no Corpo">
+                    <img src="img/t-shirt-both-front-blonde-2.webp" class="thumb" id="thumb-ambas-bw" onclick="trocarImagem('bw', 'ambas')" title="Ambas as Pretas">
                 </div>
             </div>
 
             <!-- CAMISETA 3: ESTAMPA GOLD -->
             <div class="shirt-card">
-                <div class="shirt-title">Branca (Estampa Gold)</div>
+                <div class="shirt-title">Preta (Estampa Gold)</div>
                 <div class="image-container" onclick="abrirZoom('gold')">
                     <img id="img-gold" 
-                         src="img/t-shirt-front-vc.webp" 
+                         src="img/t-shirt-hanger-front-wb.webp" 
                          class="shirt-img" alt="Estampa Gold Frente">
                     <div class="sold-out-overlay">Esgotado</div>
                     <div class="zoom-hint">⛶</div>
                 </div>
                 <div class="thumbnails">
-                    <img src="img/t-shirt-front-vc.webp" class="thumb active" id="thumb-frente-gold" onclick="trocarImagem('gold', 'frente')" title="Vista Frente">
+                    <img src="img/t-shirt-hanger-front-wb.webp" class="thumb active" id="thumb-cabide-gold" onclick="trocarImagem('gold', 'cabide')" title="No Cabide">
+                    <img src="img/t-shirt-front-vc.webp" class="thumb" id="thumb-frente-gold" onclick="trocarImagem('gold', 'frente')" title="Vista Frente">
                     <img src="img/t-shirt-gold-back.webp" class="thumb" id="thumb-verso-gold" onclick="trocarImagem('gold', 'verso')" title="Detalhe Verso">
                     <img src="img/t-shirt-gold-back-blonde.webp" class="thumb" id="thumb-corpo-gold" onclick="trocarImagem('gold', 'corpo')" title="Verso no Corpo">
                     <img src="img/t-shirt-gold-back-mirror.webp" class="thumb" id="thumb-espelho-gold" onclick="trocarImagem('gold', 'espelho')" title="No Espelho">
+                    <img src="img/t-shirt-both-front-blonde-2.webp" class="thumb" id="thumb-ambas-gold" onclick="trocarImagem('gold', 'ambas')" title="Ambas as Pretas">
                 </div>
             </div>
 
@@ -494,7 +496,7 @@
             <div class="progress-container">
                 <div class="progress-text">
                     <span>Ocupação da Lista VIP</span>
-                    <span>92%</span>
+                    <span>91%</span>
                 </div>
                 <div class="progress-bar-bg">
                     <div class="progress-bar-fill"></div>
@@ -540,15 +542,18 @@
                 corpo:  "img/t-shirt-wb-back-blonde.webp"
             },
             bw: {
-                frente: "img/t-shirt-main-logo-front.webp",
+                frente: "img/t-shirt-hanger-front-wb.webp",
                 verso: "img/t-shirt-bw-back-jesus.webp",
-                corpo:  "img/t-shirt-bw-back-blonde.webp"
+                corpo:  "img/t-shirt-bw-back-blonde.webp",
+                ambas: "img/t-shirt-both-front-blonde-2.webp"
             },
             gold: {
+                cabide: "img/t-shirt-hanger-front-wb.webp",
                 frente: "img/t-shirt-front-vc.webp",
                 verso: "img/t-shirt-gold-back.webp",
                 corpo:  "img/t-shirt-gold-back-blonde.webp",
-                espelho: "img/t-shirt-gold-back-mirror.webp"
+                espelho: "img/t-shirt-gold-back-mirror.webp",
+                ambas: "img/t-shirt-both-front-blonde-2.webp"
             }
         };
 
