@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esgotado - Voz do Cordeiro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <!-- Fontes: Playfair para elegância/paz (títulos) e Inter para leitura clara -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --bg-color: #FAF9F6; /* Off-white / Bege bem claro, transmite paz */
+            --text-primary: #1A1A1A; /* Quase preto, mais suave que #000 */
+            --text-secondary: #666666;
+            --gold: #C8A97E; /* Dourado luxuoso inspirado na coroa de espinhos */
+            --gold-hover: #b5956a;
+            --card-bg: #FFFFFF;
+            --border-light: #EAEaea;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+            padding: 40px 15px 80px 15px;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        /* ----- MENSAGEM DE CUIDADO / ESCASSEZ PACÍFICA ----- */
+        .urgency-bar {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            padding: 10px 20px;
+            font-weight: 500;
+            font-size: 0.85rem;
+            border-radius: 30px;
+            margin-bottom: 40px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+        }
+
+        .pulse-dot {
+            width: 8px;
+            height: 8px;
+            background-color: var(--gold);
+            border-radius: 50%;
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% { box-shadow: 0 0 0 0 rgba(200, 169, 126, 0.4); }
+            70% { box-shadow: 0 0 0 10px rgba(200, 169, 126, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(200, 169, 126, 0); }
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.8rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: 15px;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+        }
+
+        .subtitle {
+            font-size: 1.05rem;
+            color: var(--text-secondary);
+            margin-bottom: 50px;
+            line-height: 1.6;
+            font-weight: 300;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .subtitle strong {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* ----- GRID DE CAMISETAS ----- */
+        .shirts-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 70px;
+        }
+
+        .shirt-card {
+            background-color: var(--card-bg);
+            padding: 20px;
+            width: 100%;
+            max-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .shirt-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+        }
+
+        .shirt-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+            font-style: italic;
+        }
+
+        /* Zoom Container */
+        .image-container {
+            width: 100%;
+            aspect-ratio: 4/5;
+            background-color: #F5F5F5;
+            margin-bottom: 20px;
+            overflow: hidden;
+            position: relative;
+            cursor: zoom-in;
+        }
+
+        .shirt-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .image-container:hover .shirt-img {
+            transform: scale(1.08);
+        }
+
+        .zoom-hint {
+            position: absolute;
+            bottom: 12px;
+            right: 12px;
+            color: var(--text-secondary);
+            font-size: 1.2rem;
+            pointer-events: none;
+            background: rgba(255,255,255,0.8);
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .sold-out-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(255, 255, 255, 0.95);
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-weight: 500;
+            padding: 8px 20px;
+            letter-spacing: 4px;
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            pointer-events: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            z-index: 2;
+        }
+
+        /* Miniaturas de foto */
+        .thumbnails {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            width: 100%;
+            margin-top: 5px;
+        }
+
+        .thumb {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0.5;
+            background-color: #f5f5f5;
+        }
+
+        .thumb:hover {
+            opacity: 0.8;
+            transform: translateY(-2px);
+        }
+
+        .thumb.active {
+            border-color: var(--gold);
+            opacity: 1;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+
+
+        /* ----- FORMULÁRIO DE ALTA CONVERSÃO (SEM SER AGRESSIVO) ----- */
+        .vip-section {
+            background-color: var(--card-bg);
+            padding: 50px 40px;
+            max-width: 550px;
+            margin: 0 auto;
+            position: relative;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+        }
+
+        /* Barra de progresso de lotação (Elegante) */
+        .progress-container {
+            margin-bottom: 30px;
+            text-align: left;
+        }
+        
+        .progress-text {
+            display: flex;
+            justify-content: space-between;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+            font-weight: 500;
+        }
+
+        .progress-bar-bg {
+            width: 100%;
+            height: 4px;
+            background-color: var(--border-light);
+            border-radius: 2px;
+            overflow: hidden;
+        }
+
+        .progress-bar-fill {
+            width: 92%;
+            height: 100%;
+            background-color: var(--gold);
+            border-radius: 2px;
+            animation: loadBar 2s ease-out;
+        }
+
+        @keyframes loadBar {
+            0% { width: 0%; }
+            100% { width: 92%; }
+        }
+
+        .vip-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+        
+        .vip-subtitle {
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            margin-bottom: 35px;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 16px 20px;
+            border: 1px solid var(--border-light);
+            background-color: #FaFaFa;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.95rem;
+            transition: all 0.3s;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: var(--gold);
+            background-color: var(--card-bg);
+            box-shadow: 0 0 0 3px rgba(200, 169, 126, 0.1);
+        }
+
+        .form-group input::placeholder {
+            color: #AAAAAA;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background-color: var(--gold);
+            color: white;
+            border: none;
+            font-size: 1.05rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .submit-btn:hover {
+            background-color: var(--gold-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(200, 169, 126, 0.3);
+        }
+        
+        .submit-btn:active {
+            transform: translateY(1px);
+        }
+
+        #success-msg {
+            display: none;
+            margin-top: 25px;
+            padding: 25px;
+            background-color: #F9FDF9;
+            border: 1px solid #D1EAD1;
+            color: #3b7b3b;
+            font-weight: 400;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ----- LIGHTBOX DE ZOOM (Tela Cheia) ----- */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(255, 255, 255, 0.98);
+            z-index: 9999;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            opacity: 0;
+            transition: opacity 0.4s ease;
+        }
+
+        .lightbox.show {
+            display: flex;
+            opacity: 1;
+        }
+
+        .lightbox-img {
+            max-width: 90%;
+            max-height: 85%;
+            object-fit: contain;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            cursor: zoom-in;
+        }
+
+        .close-lightbox {
+            position: absolute;
+            top: 30px;
+            right: 40px;
+            color: var(--text-primary);
+            font-size: 2.5rem;
+            cursor: pointer;
+            font-weight: 300;
+            transition: transform 0.3s;
+        }
+        
+        .close-lightbox:hover {
+            transform: scale(1.1);
+        }
+
+        .lightbox-hint {
+            color: var(--text-secondary);
+            margin-top: 25px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        @media (max-width: 600px) {
+            h1 { font-size: 2rem; letter-spacing: 2px; }
+            .vip-section { padding: 40px 20px; }
+            .shirts-grid { gap: 40px; }
+            .shirt-card { box-shadow: none; border-bottom: 1px solid var(--border-light); padding-bottom: 40px;}
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Lightbox (Galeria Tela Cheia) -->
+    <div class="lightbox" id="lightbox" onclick="fecharBg(event)">
+        <span class="close-lightbox" onclick="fecharZoom()">&times;</span>
+        <img class="lightbox-img" id="lightbox-img" src="" alt="Zoom" onclick="toggleZoomImg(event)">
+        <div class="lightbox-hint">Toque na imagem para aproximar detalhes</div>
+    </div>
+
+    <div class="container">
+        
+        <div class="urgency-bar">
+            <span class="pulse-dot"></span> 
+            Lista VIP próxima do encerramento
+        </div>
+        
+        <h1>Esgotado</h1>
+        <p class="subtitle">A coleção inicial arrematada pelos nossos primeiros convidados. <strong>Antecipe-se e confira os detalhes das peças para a nova leva.</strong></p>
+
+        <!-- CAMISETAS -->
+        <div class="shirts-grid">
+            
+            <!-- CAMISETA 1: BRANCA (ESTAMPA PRETA) -->
+            <div class="shirt-card">
+                <div class="shirt-title">Branca (Estampa Preta)</div>
+                <div class="image-container" onclick="abrirZoom('wb')">
+                    <img id="img-wb" 
+                         src="img/t-shirt-front-wb.webp" 
+                         class="shirt-img" alt="Camiseta Branca Frente">
+                    <div class="sold-out-overlay">Esgotado</div>
+                    <div class="zoom-hint">⛶</div>
+                </div>
+                <div class="thumbnails">
+                    <img src="img/t-shirt-front-wb.webp" class="thumb active" id="thumb-frente-wb" onclick="trocarImagem('wb', 'frente')" title="Vista Frente">
+                    <img src="img/t-shirt-back-wb-st.webp" class="thumb" id="thumb-verso-wb" onclick="trocarImagem('wb', 'verso')" title="Detalhe Verso">
+                    <img src="img/t-shirt-back-wb.webp" class="thumb" id="thumb-costas-wb" onclick="trocarImagem('wb', 'costas')" title="Costas Completa">
+                    <img src="img/t-shirt-wb-back-blonde.webp" class="thumb" id="thumb-corpo-wb" onclick="trocarImagem('wb', 'corpo')" title="Verso no Corpo">
+                </div>
+            </div>
+
+            <!-- CAMISETA 2: PRETA (ESTAMPA BRANCA) -->
+            <div class="shirt-card">
+                <div class="shirt-title">Preta (Estampa Branca)</div>
+                <div class="image-container" onclick="abrirZoom('bw')">
+                    <img id="img-bw" 
+                         src="img/t-shirt-main-logo-front.webp" 
+                         class="shirt-img" alt="Camiseta Preta Frente">
+                    <div class="sold-out-overlay">Esgotado</div>
+                    <div class="zoom-hint">⛶</div>
+                </div>
+                <div class="thumbnails">
+                    <img src="img/t-shirt-main-logo-front.webp" class="thumb active" id="thumb-frente-bw" onclick="trocarImagem('bw', 'frente')" title="Vista Frente">
+                    <img src="img/t-shirt-bw-back-jesus.webp" class="thumb" id="thumb-verso-bw" onclick="trocarImagem('bw', 'verso')" title="Detalhe Verso">
+                    <img src="img/t-shirt-bw-back-blonde.webp" class="thumb" id="thumb-corpo-bw" onclick="trocarImagem('bw', 'corpo')" title="Verso no Corpo">
+                </div>
+            </div>
+
+            <!-- CAMISETA 3: ESTAMPA GOLD -->
+            <div class="shirt-card">
+                <div class="shirt-title">Branca (Estampa Gold)</div>
+                <div class="image-container" onclick="abrirZoom('gold')">
+                    <img id="img-gold" 
+                         src="img/t-shirt-front-vc.webp" 
+                         class="shirt-img" alt="Estampa Gold Frente">
+                    <div class="sold-out-overlay">Esgotado</div>
+                    <div class="zoom-hint">⛶</div>
+                </div>
+                <div class="thumbnails">
+                    <img src="img/t-shirt-front-vc.webp" class="thumb active" id="thumb-frente-gold" onclick="trocarImagem('gold', 'frente')" title="Vista Frente">
+                    <img src="img/t-shirt-gold-back.webp" class="thumb" id="thumb-verso-gold" onclick="trocarImagem('gold', 'verso')" title="Detalhe Verso">
+                    <img src="img/t-shirt-gold-back-blonde.webp" class="thumb" id="thumb-corpo-gold" onclick="trocarImagem('gold', 'corpo')" title="Verso no Corpo">
+                    <img src="img/t-shirt-gold-back-mirror.webp" class="thumb" id="thumb-espelho-gold" onclick="trocarImagem('gold', 'espelho')" title="No Espelho">
+                </div>
+            </div>
+
+        </div>
+
+        <!-- FORMULÁRIO DE ALTA CONVERSÃO (ELEGANTE) -->
+        <div class="vip-section" id="form-caixa">
+            
+            <div class="progress-container">
+                <div class="progress-text">
+                    <span>Ocupação da Lista VIP</span>
+                    <span>92%</span>
+                </div>
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill"></div>
+                </div>
+            </div>
+
+            <div class="vip-title">Acesso Antecipado</div>
+            <div class="vip-subtitle">Inscreva-se com antecedência para garantir o seu lugar. Aqueles na lista terão preferência exclusiva de compra na abertura.</div>
+            
+
+            <!-- FORMULÁRIO -->
+            <form id="lista-vip" action="https://formsubmit.co/murillomazeredotik@gmail.com" method="POST">
+                
+                <!-- Campos extras úteis para o formsubmit funcionar bem (Ocultos para o cliente) -->
+                <input type="hidden" name="_captcha" value="false"> <!-- Tira a verificação "Sou humano" chata -->
+                <input type="hidden" name="_subject" value="Novo Lead! - Voz do Cordeiro Lista VIP"> <!-- Nome do assunto do e-mail -->
+                
+                <div class="form-group">
+                    <input type="text" name="name" id="nome" placeholder="Seu nome completo" required>
+                </div>
+                <div class="form-group">
+                    <input type="tel" name="whatsapp" id="whatsapp" placeholder="Seu WhatsApp (apenas números com DDD)" required>
+                </div>
+                <button type="submit" class="submit-btn" id="btn-enviar">Garantir Lugar Na Lista</button>
+            </form>
+
+            <div id="success-msg">
+                Sua presença foi confirmada na lista de espera.<br><br>Você será notificado pelo WhatsApp minutos antes da reabertura oficial do estoque. Fique atento.
+            </div>
+        </div>
+
+    </div>
+
+    <!-- ===== JAVASCRIPT DO SITE ===== -->
+    <script>
+        // 1. BANCO DE IMAGENS (Frente, Verso e Modelo usando no Corpo)
+        // Substitua TODAS essas URLs pelas fotos da sua coleção
+        const fotos = {
+            wb: {
+                frente: "img/t-shirt-front-wb.webp",
+                verso: "img/t-shirt-back-wb-st.webp",
+                costas: "img/t-shirt-back-wb.webp",
+                corpo:  "img/t-shirt-wb-back-blonde.webp"
+            },
+            bw: {
+                frente: "img/t-shirt-main-logo-front.webp",
+                verso: "img/t-shirt-bw-back-jesus.webp",
+                corpo:  "img/t-shirt-bw-back-blonde.webp"
+            },
+            gold: {
+                frente: "img/t-shirt-front-vc.webp",
+                verso: "img/t-shirt-gold-back.webp",
+                corpo:  "img/t-shirt-gold-back-blonde.webp",
+                espelho: "img/t-shirt-gold-back-mirror.webp"
+            }
+        };
+
+        // Função para os botões mudarem as imagens com efeito suave
+        function trocarImagem(camiseta, tipo) {
+            const imgEl = document.getElementById(`img-${camiseta}`);
+            
+            // Pequeno efeito visual de transição manual
+            imgEl.style.opacity = 0.5;
+            
+            setTimeout(() => {
+                imgEl.src = fotos[camiseta][tipo];
+                imgEl.style.opacity = 1;
+            }, 150);
+            
+            // Controle visual de qual botão tá ativado
+            const thumbs = document.querySelectorAll(`[id^="thumb-"][id$="-${camiseta}"]`);
+            thumbs.forEach(t => t.classList.remove("active"));
+            
+            document.getElementById(`thumb-${tipo}-${camiseta}`).classList.add("active");
+        }
+
+        // --- SISTEMA DE ZOOM E LIGHTBOX ---
+        let isZoomed = false;
+
+        function abrirZoom(camiseta) {
+            const imgElement = document.getElementById(`img-${camiseta}`);
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            lightboxImg.src = imgElement.src;
+            
+            // Resetar zoom state
+            lightboxImg.style.transform = 'scale(1)';
+            lightboxImg.style.cursor = 'zoom-in';
+            isZoomed = false;
+
+            lightbox.classList.add('show');
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function toggleZoomImg(e) {
+            e.stopPropagation(); // Não deixa o clique propagar para fechar o lightbox
+            const lightboxImg = document.getElementById('lightbox-img');
+            
+            if(!isZoomed) {
+                // Dar zoom na área precisa do clique do cliente
+                const rect = e.target.getBoundingClientRect();
+                const x = ((e.clientX - rect.left) / rect.width) * 100;
+                const y = ((e.clientY - rect.top) / rect.height) * 100;
+                
+                lightboxImg.style.transformOrigin = `${x}% ${y}%`;
+                lightboxImg.style.transform = 'scale(2.5)';
+                lightboxImg.style.cursor = 'zoom-out';
+                isZoomed = true;
+            } else {
+                lightboxImg.style.transform = 'scale(1)';
+                lightboxImg.style.cursor = 'zoom-in';
+                isZoomed = false;
+            }
+        }
+
+        function fecharBg(e) {
+            if (e.target.id === 'lightbox') {
+                fecharZoom();
+            }
+        }
+
+        function fecharZoom() {
+            const lightbox = document.getElementById('lightbox');
+            lightbox.classList.remove('show');
+            document.body.style.overflow = 'auto'; 
+        }
+
+        // --- ENVIO DO FORMULÁRIO (SUAVE E ELEGANTE) ---
+        document.getElementById("lista-vip").addEventListener("submit", function(event) {
+            event.preventDefault(); 
+            
+            let form = event.target;
+            let botao = document.getElementById("btn-enviar");
+            let msgSucesso = document.getElementById("success-msg");
+            
+            botao.innerHTML = "Agendando lugar... ⏳"; 
+            
+            let actionURL = form.getAttribute("action");
+
+            if(actionURL && actionURL !== "") {
+                fetch(actionURL, {
+                    method: 'POST',
+                    body: new FormData(form),
+                    mode: 'no-cors'
+                }).then(() => {
+                    mostrarSucesso();
+                }).catch(() => {
+                    mostrarSucesso(); 
+                });
+            } else {
+                setTimeout(mostrarSucesso, 1200);
+            }
+
+            function mostrarSucesso() {
+                form.style.display = "none";
+                msgSucesso.style.display = "block";
+            }
+        });
+    </script>
+</body>
+</html>
