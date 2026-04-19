@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -519,6 +520,27 @@
                 </div>
                 <div class="form-group">
                     <input type="tel" name="whatsapp" id="whatsapp" placeholder="Seu WhatsApp (apenas números com DDD)" required>
+                </div>
+
+                <div class="form-group">
+                    <select name="modelo_interesse" id="modelo" required style="width: 100%; padding: 16px 20px; border: 1px solid #EAEaea; background-color: #FaFaFa; color: #1A1A1A; font-family: 'Inter', sans-serif; font-size: 0.95rem;">
+                        <option value="" disabled selected>Qual estampa você prefere?</option>
+                        <option value="Estampa_Branca">Estampa Branca</option>
+                        <option value="Estampa_Dourada">Estampa Dourada</option>
+                        <option value="Estampa_Preta">Estampa Preta</option>
+                        <option value="Ainda_nao_sei">Ainda não decidi</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <select name="tamanho" id="tamanho" required style="width: 100%; padding: 16px 20px; border: 1px solid #EAEaea; background-color: #FaFaFa; color: #1A1A1A; font-family: 'Inter', sans-serif; font-size: 0.95rem; margin-bottom: 10px;">
+                        <option value="" disabled selected>Qual o seu tamanho?</option>
+                        <option value="P">P</option>
+                        <option value="M">M</option>
+                        <option value="G">G</option>
+                        <option value="GG">GG</option>
+                        <option value="XG">XG</option>
+                    </select>
                 </div>
                 <button type="submit" class="submit-btn" id="btn-enviar">Garantir Lugar Na Lista</button>
             </form>
