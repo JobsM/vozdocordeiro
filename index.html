@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Esgotado - Voz do Cordeiro</title>
+    <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Fontes: Playfair para elegância/paz (títulos) e Inter para leitura clara -->
@@ -403,6 +404,68 @@
             text-transform: uppercase;
         }
 
+        /* ----- SELETOR DE OPÇÕES (BOTÕES VISUAIS) ----- */
+        .selector-label {
+            display: block;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+            margin-bottom: 12px;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+        }
+
+        .btn-option {
+            padding: 10px 18px;
+            border: 1px solid var(--border-light);
+            background-color: #FAFAFA;
+            color: var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            border-radius: 2px;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-option:hover {
+            border-color: var(--gold);
+            color: var(--gold);
+            background-color: rgba(200, 169, 126, 0.05);
+        }
+
+        .btn-option.selected {
+            background-color: var(--gold);
+            border-color: var(--gold);
+            color: #fff;
+            box-shadow: 0 4px 12px rgba(200, 169, 126, 0.3);
+        }
+
+        /* Tamanhos: botões quadrados */
+        .btn-option.size {
+            width: 52px;
+            height: 52px;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.85rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        /* Campo hidden para envio do form */
+        .hidden-input {
+            display: none;
+        }
+
         @media (max-width: 600px) {
             h1 { font-size: 2rem; letter-spacing: 2px; }
             .vip-section { padding: 40px 20px; }
@@ -521,25 +584,29 @@
                     <input type="tel" name="whatsapp" id="whatsapp" placeholder="Seu WhatsApp (apenas números com DDD)" required>
                 </div>
 
+                <!-- SELETOR DE ESTAMPA -->
                 <div class="form-group">
-                    <select name="modelo_interesse" id="modelo" required style="width: 100%; padding: 16px 20px; border: 1px solid #EAEaea; background-color: #FaFaFa; color: #1A1A1A; font-family: 'Inter', sans-serif; font-size: 0.95rem;">
-                        <option value="" disabled selected>Qual estampa você prefere?</option>
-                        <option value="Estampa_Branca">Estampa Branca</option>
-                        <option value="Estampa_Dourada">Estampa Dourada</option>
-                        <option value="Estampa_Preta">Estampa Preta</option>
-                        <option value="Ainda_nao_sei">Ainda não decidi</option>
-                    </select>
+                    <span class="selector-label">Qual estampa você prefere?</span>
+                    <div class="btn-group" id="grupo-estampa">
+                        <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Estampa_Branca', this)">Branca</button>
+                        <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Estampa_Dourada', this)">Dourada</button>
+                        <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Estampa_Preta', this)">Preta</button>
+                        <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Ainda_nao_sei', this)">Ainda não sei</button>
+                    </div>
+                    <input type="hidden" name="modelo_interesse" id="modelo" class="hidden-input">
                 </div>
 
+                <!-- SELETOR DE TAMANHO -->
                 <div class="form-group">
-                    <select name="tamanho" id="tamanho" required>
-                        <option value="">Selecione o tamanho</option>
-                        <option value="P">P</option>
-                        <option value="M">M</option>
-                        <option value="G">G</option>
-                        <option value="GG">GG</option>
-                        <option value="XG">XG</option>
-                    </select>
+                    <span class="selector-label">Selecione o tamanho</span>
+                    <div class="btn-group" id="grupo-tamanho">
+                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'P', this)">P</button>
+                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'M', this)">M</button>
+                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'G', this)">G</button>
+                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'GG', this)">GG</button>
+                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'XG', this)">XG</button>
+                    </div>
+                    <input type="hidden" name="tamanho" id="tamanho" class="hidden-input">
                 </div>
                 <button type="submit" class="submit-btn" id="btn-enviar">Garantir Lugar Na Lista</button>
             </form>
@@ -647,6 +714,19 @@
             const lightbox = document.getElementById('lightbox');
             lightbox.classList.remove('show');
             document.body.style.overflow = 'auto'; 
+        }
+
+        // --- SELETORES VISUAIS (ESTAMPA E TAMANHO) ---
+        function selecionarOpcao(campo, valor, btn) {
+            // Remove seleção anterior no grupo
+            const grupo = btn.closest('.btn-group');
+            grupo.querySelectorAll('.btn-option').forEach(b => b.classList.remove('selected'));
+            
+            // Marca o botão clicado
+            btn.classList.add('selected');
+            
+            // Atualiza o campo hidden para envio
+            document.getElementById(campo === 'estampa' ? 'modelo' : 'tamanho').value = valor;
         }
 
         // --- ENVIO DO FORMULÁRIO (SUAVE E ELEGANTE) ---
