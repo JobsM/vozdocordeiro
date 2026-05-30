@@ -223,13 +223,48 @@
 
 
         /* ----- FORMULÁRIO DE ALTA CONVERSÃO (SEM SER AGRESSIVO) ----- */
+        .waitlist-wrapper {
+            margin-top: 60px;
+            padding-top: 80px;
+            padding-bottom: 80px;
+            border-top: 1px solid rgba(0,0,0,0.05);
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background-color: #f7f6f2;
+        }
+
         .vip-section {
             background-color: var(--card-bg);
             padding: 50px 40px;
-            max-width: 550px;
+            max-width: 600px;
             margin: 0 auto;
             position: relative;
             box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+            border-top: 3px solid var(--gold);
+        }
+
+        .join-waitlist-btn {
+            margin-top: 20px;
+            width: 100%;
+            padding: 12px;
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--text-primary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .join-waitlist-btn:hover {
+            background-color: var(--text-primary);
+            color: #fff;
         }
 
         /* Barra de progresso de lotação (Elegante) */
@@ -472,6 +507,120 @@
             .shirts-grid { gap: 40px; }
             .shirt-card { box-shadow: none; border-bottom: 1px solid var(--border-light); padding-bottom: 40px;}
         }
+        /* ----- SELETOR DE CORES ----- */
+        .color-variants {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 15px;
+            justify-content: center;
+        }
+        .color-btn {
+            width: 26px;
+            height: 26px;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid transparent;
+            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .color-btn:hover {
+            transform: scale(1.1);
+        }
+        .color-btn.active {
+            transform: scale(1.2);
+            border-color: var(--gold);
+            box-shadow: 0 4px 10px rgba(200, 169, 126, 0.4);
+        }
+        .collection-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-bottom: 15px;
+            font-weight: 300;
+        }
+        .thumb-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            width: 100%;
+            flex-wrap: wrap;
+        }
+        .thumb-group.hidden {
+            display: none;
+        }
+        
+        .shirt-card:not(.expanded) .thumb-group .thumb:nth-child(n+5) {
+            display: none;
+        }
+        .ver-mais-btn {
+            display: block;
+            width: fit-content;
+            margin: 15px auto 5px auto;
+            padding: 8px 20px;
+            background-color: var(--black);
+            color: #fff;
+            border-radius: 20px;
+            border: 1px solid var(--black);
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+        .ver-mais-btn:hover {
+            background-color: transparent;
+            color: var(--text-primary);
+        }
+
+        /* ----- SOCIAL FOOTER ----- */
+        .social-footer {
+            margin-top: 60px;
+            margin-bottom: 20px;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+        }
+        .social-footer h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--text-primary);
+            margin-bottom: 25px;
+            font-weight: 600;
+            font-style: italic;
+        }
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+        }
+        .social-link {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background-color: var(--card-bg);
+            border: 1px solid var(--border-light);
+            color: var(--text-primary);
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+        .social-link:hover {
+            background-color: var(--text-primary);
+            color: #fff;
+            border-color: var(--text-primary);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+        .social-handle {
+            margin-top: 20px;
+            font-size: 0.95rem;
+            color: var(--text-secondary);
+            font-weight: 500;
+            letter-spacing: 1.5px;
+        }
     </style>
 </head>
 <body>
@@ -495,173 +644,269 @@
         <!-- CAMISETAS -->
         <div class="shirts-grid">
             
-            <!-- CAMISETA 1: BRANCA (ESTAMPA PRETA) -->
+            <!-- COLEÇÃO 1: SANTO ESPÍRITO -->
             <div class="shirt-card">
-                <div class="shirt-title">Branca (Estampa Preta)</div>
-                <div class="image-container" onclick="abrirZoom('wb')">
-                    <img id="img-wb" 
-                         src="img/t-shirt-front-wb.webp" 
-                         class="shirt-img" alt="Camiseta Branca Frente">
+                <div class="shirt-title">Santo Espírito</div>
+                <div class="collection-desc">Frente: Logo VC / Costas: Santo Espírito — Desce Como Fogo</div>
+                <div class="image-container" onclick="abrirZoom('espirito')">
+                    <img id="img-espirito" src="img/t-shirt-wb-back-blonde.webp" class="shirt-img" alt="Coleção Santo Espírito">
                     <div class="sold-out-overlay">Esgotado</div>
                     <div class="zoom-hint">⛶</div>
                 </div>
-                <div class="thumbnails">
-                    <img src="img/t-shirt-front-wb.webp" class="thumb active" id="thumb-frente-wb" onclick="trocarImagem('wb', 'frente')" title="Vista Frente">
-                    <img src="img/t-shirt-back-wb-st.webp" class="thumb" id="thumb-verso-wb" onclick="trocarImagem('wb', 'verso')" title="Detalhe Verso">
-                    <img src="img/t-shirt-back-wb.webp" class="thumb" id="thumb-costas-wb" onclick="trocarImagem('wb', 'costas')" title="Costas Completa">
-                    <img src="img/t-shirt-wb-back-blonde.webp" class="thumb" id="thumb-corpo-wb" onclick="trocarImagem('wb', 'corpo')" title="Verso no Corpo">
+                <div class="color-variants">
+                    <button class="color-btn active" onclick="mudarCor('espirito','branca',this)" style="background:#fff;border:1px solid #ccc" title="Branca"></button>
+                    <button class="color-btn" onclick="mudarCor('espirito','preta',this)" style="background:#1a1a1a" title="Preta"></button>
                 </div>
+                <div class="thumb-group" id="thumbs-espirito-branca">
+                    <img src="img/t-shirt-front-wb.webp" class="thumb active" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente">
+                    <img src="img/22222.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Estúdio">
+                    <img src="img/t-shirt-back-wb-st.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Costas Cabide">
+                    <img src="img/t-shirt-back-wb.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Costas">
+                    <img src="img/t-shirt-wb-back-blonde.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Feminino">
+                </div>
+                <div class="thumb-group hidden" id="thumbs-espirito-preta">
+                    <img src="img/t-shirt-both-front-blonde.webp" class="thumb active" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Modelo">
+                    <img src="img/t-shirt-both-front-blonde-2.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Modelos">
+                    <img src="img/t-shirt-main-logo-front.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Cabide">
+                    <img src="img/cssa.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Costas Cabide">
+                    <img src="img/t-shirt-bw-back-jesus.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Masc Costas">
+                    <img src="img/t-shirt-bw-back-blonde.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Fem Costas">
+                    <img src="img/t-shirt-gold-back.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Gold">
+                    <img src="img/t-shirt-gold-back-blonde.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Costas Gold">
+                    <img src="img/t-shirt-gold-hanger.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Masc Gold">
+                    <img src="img/t-shirt-gold-back-mirror.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Fem Gold">
+                </div>
+                <button class="ver-mais-btn" onclick="toggleThumbnails(this)">+ Ver mais imagens</button>
+                <button class="join-waitlist-btn" onclick="document.getElementById('form-caixa').scrollIntoView({behavior:'smooth'})">Entrar na Lista</button>
             </div>
 
-            <!-- CAMISETA 2: PRETA (ESTAMPA BRANCA) -->
+            <!-- COLEÇÃO 2: JESUS É O CAMINHO -->
             <div class="shirt-card">
-                <div class="shirt-title">Preta (Estampa Branca)</div>
-                <div class="image-container" onclick="abrirZoom('bw')">
-                    <img id="img-bw" 
-                         src="img/t-shirt-hanger-front-wb.webp" 
-                         class="shirt-img" alt="Camiseta Preta Frente">
+                <div class="shirt-title">Jesus É O Caminho</div>
+                <div class="collection-desc">Frente: J Coroado / Costas: Jesus É O Caminho — João 14:6</div>
+                <div class="image-container" onclick="abrirZoom('jesus')">
+                    <img id="img-jesus" src="img/image copy 10.webp" class="shirt-img" alt="Coleção Jesus É O Caminho">
                     <div class="sold-out-overlay">Esgotado</div>
                     <div class="zoom-hint">⛶</div>
                 </div>
-                <div class="thumbnails">
-                    <img src="img/t-shirt-hanger-front-wb.webp" class="thumb active" id="thumb-frente-bw" onclick="trocarImagem('bw', 'frente')" title="Vista Frente">
-                    <img src="img/t-shirt-bw-back-jesus.webp" class="thumb" id="thumb-verso-bw" onclick="trocarImagem('bw', 'verso')" title="Detalhe Verso">
-                    <img src="img/t-shirt-bw-back-blonde.webp" class="thumb" id="thumb-corpo-bw" onclick="trocarImagem('bw', 'corpo')" title="Verso no Corpo">
-                    <img src="img/t-shirt-both-front-blonde-2.webp" class="thumb" id="thumb-ambas-bw" onclick="trocarImagem('bw', 'ambas')" title="Ambas as Pretas">
+                <div class="color-variants">
+                    <button class="color-btn active" onclick="mudarCor('jesus','branca',this)" style="background:#fff;border:1px solid #ccc" title="Branca"></button>
+                    <button class="color-btn" onclick="mudarCor('jesus','preta',this)" style="background:#1a1a1a" title="Preta"></button>
                 </div>
+                <div class="thumb-group" id="thumbs-jesus-branca">
+                    <img src="img/image copy 10.webp" class="thumb active" onclick="trocarImagemSimples('jesus',this.src,this)" title="Modelo Frente">
+                    <img src="img/image copy 16.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Frente Modelo 2">
+                    <img src="img/j-frente-branca.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Frente Cabide 1">
+                    <img src="img/image copy 13.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Frente Cabide 2">
+                    <img src="img/image copy 15.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Frente Cabide 3">
+                    <img src="img/j-costas-branca.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Costas Cabide">
+                    <img src="img/image copy 8.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Modelo Costas">
+                    <img src="img/image copy 19.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Modelo Masc. Costas">
+                    <img src="img/j-costas-modelo-branca.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Modelo Fem Costas 2">
+                </div>
+                <div class="thumb-group hidden" id="thumbs-jesus-preta">
+                    <img src="img/image copy 14.webp" class="thumb active" onclick="trocarImagemSimples('jesus',this.src,this)" title="Modelo Fem Frente">
+                    <img src="img/22.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Frente Estúdio">
+                    <img src="img/j-frente-preta.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Frente Cabide 1">
+                    <img src="img/image copy 11.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Frente Cabide 2">
+                    <img src="img/image copy 18.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Frente Cabide 3">
+                    <img src="img/image copy 9.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Frente Cabide 4">
+                    <img src="img/j-costas-preta.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Costas Cabide">
+                    <img src="img/image copy 12.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Modelo Fem. Costas">
+                    <img src="img/image copy 17.webp" class="thumb" onclick="trocarImagemSimples('jesus',this.src,this)" title="Modelo Masc. Costas">
+                </div>
+                <button class="ver-mais-btn" onclick="toggleThumbnails(this)">+ Ver mais imagens</button>
+                <button class="join-waitlist-btn" onclick="document.getElementById('form-caixa').scrollIntoView({behavior:'smooth'})">Entrar na Lista</button>
             </div>
 
-            <!-- CAMISETA 3: ESTAMPA GOLD -->
+            <!-- COLEÇÃO 3: DEUS É ETERNO -->
             <div class="shirt-card">
-                <div class="shirt-title">Preta (Estampa Gold)</div>
-                <div class="image-container" onclick="abrirZoom('gold')">
-                    <img id="img-gold" 
-                         src="img/t-shirt-hanger-front-wb.webp" 
-                         class="shirt-img" alt="Estampa Gold Frente">
+                <div class="shirt-title">Deus É Eterno</div>
+                <div class="collection-desc">Frente: Voz Do Cordeiro / Costas: Deus É Eterno — O Princípio e o Fim</div>
+                <div class="image-container" onclick="abrirZoom('deus')">
+                    <img id="img-deus" src="img/image_compressed (8).webp" class="shirt-img" alt="Coleção Deus É Eterno">
                     <div class="sold-out-overlay">Esgotado</div>
                     <div class="zoom-hint">⛶</div>
                 </div>
-                <div class="thumbnails">
-                    <img src="img/t-shirt-hanger-front-wb.webp" class="thumb active" id="thumb-cabide-gold" onclick="trocarImagem('gold', 'cabide')" title="No Cabide">
-                    <img src="img/t-shirt-front-vc.webp" class="thumb" id="thumb-frente-gold" onclick="trocarImagem('gold', 'frente')" title="Vista Frente">
-                    <img src="img/t-shirt-gold-back.webp" class="thumb" id="thumb-verso-gold" onclick="trocarImagem('gold', 'verso')" title="Detalhe Verso">
-                    <img src="img/t-shirt-gold-back-blonde.webp" class="thumb" id="thumb-corpo-gold" onclick="trocarImagem('gold', 'corpo')" title="Verso no Corpo">
-                    <img src="img/t-shirt-gold-back-mirror.webp" class="thumb" id="thumb-espelho-gold" onclick="trocarImagem('gold', 'espelho')" title="No Espelho">
-                    <img src="img/t-shirt-both-front-blonde-2.webp" class="thumb" id="thumb-ambas-gold" onclick="trocarImagem('gold', 'ambas')" title="Ambas as Pretas">
+                <div class="color-variants">
+                    <button class="color-btn active" onclick="mudarCor('deus','branca',this)" style="background:#fff;border:1px solid #ccc" title="Branca"></button>
+                    <button class="color-btn" onclick="mudarCor('deus','preta',this)" style="background:#1a1a1a" title="Preta"></button>
+                    <button class="color-btn" onclick="mudarCor('deus','bege',this)" style="background:#D2C4B3" title="Bege"></button>
+                    <button class="color-btn" onclick="mudarCor('deus','marrom',this)" style="background:#5C4033" title="Marrom"></button>
                 </div>
+                <div class="thumb-group" id="thumbs-deus-branca">
+                    <img src="img/image_compressed (15).webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente">
+                    <img src="img/deus-nov.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 2">
+                    <img src="img/image_compressed (16).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Frente">
+                    <img src="img/novas-variedades-deus.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Frente 2">
+                    <img src="img/image_compressed.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas 1">
+                    <img src="img/image_compressed (17).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Costas 1">
+                    <img src="img/image_compressed (7).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Costas 2">
+                    <img src="img/image_compressed (18).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas 1">
+                    <img src="img/image_compressed (10).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas 2">
+                    <img src="img/image_compressed (8).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Corpo Longe">
+                </div>
+                <div class="thumb-group hidden" id="thumbs-deus-preta">
+                    <img src="img/image_compressed (13).webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 1">
+                    <img src="img/image_compressed (6).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 2">
+                    <img src="img/image_compressed (14).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Frente">
+                    <img src="img/image_compressed (5).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Frente Cabide">
+                    <img src="img/image_compressed (11).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Costas Cabide 1">
+                    <img src="img/image_compressed (19).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Costas Cabide 2">
+                    <img src="img/image_compressed (9).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Costas">
+                </div>
+                <div class="thumb-group hidden" id="thumbs-deus-bege">
+                    <img src="img/image copy 6.webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Frente">
+                    <img src="img/vc-bege-costas-modelo.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas">
+                    <img src="img/costas-vc-bege.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Costas">
+                    <img src="img/image copy 3.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas 1">
+                    <img src="img/image copy 7.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas 2">
+                    <img src="img/nova-coleção-deus-bege.png" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas 3">
+                    
+                </div>
+                <div class="thumb-group hidden" id="thumbs-deus-marrom">
+                    <img src="img/image.webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 1">
+                    <img src="img/image copy.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 2">
+                    <img src="img/image copy 4.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Frente">
+                    <img src="img/image copy 5.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Frente Cabide">
+                    <img src="img/vc-marrom.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Costas 1">
+                    <img src="img/vc-marrom-copy.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Costas 2">
+                    <img src="img/image copy 2.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas">
+                    <img src="img/nova-coleção-deus-marrom.png" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas">
+                </div>
+                <button class="ver-mais-btn" onclick="toggleThumbnails(this)">+ Ver mais imagens</button>
+                <button class="join-waitlist-btn" onclick="document.getElementById('form-caixa').scrollIntoView({behavior:'smooth'})">Entrar na Lista</button>
             </div>
 
         </div>
 
         <!-- FORMULÁRIO DE ALTA CONVERSÃO (ELEGANTE) -->
-        <div class="vip-section" id="form-caixa">
-            
-            <div class="progress-container">
-                <div class="progress-text">
-                    <span>Ocupação da Lista VIP</span>
-                    <span>91%</span>
+        <div class="waitlist-wrapper" id="form-caixa">
+            <div class="vip-section">
+                
+                <div class="progress-container">
+                    <div class="progress-text">
+                        <span>Ocupação da Lista VIP</span>
+                        <span>91%</span>
+                    </div>
+                    <div class="progress-bar-bg">
+                        <div class="progress-bar-fill"></div>
+                    </div>
                 </div>
-                <div class="progress-bar-bg">
-                    <div class="progress-bar-fill"></div>
+
+                <div class="vip-title">Acesso Antecipado</div>
+                <div class="vip-subtitle">Inscreva-se com antecedência para garantir o seu lugar. Aqueles na lista terão preferência exclusiva de compra na abertura.</div>
+                
+
+                <!-- FORMULÁRIO -->
+                <form id="lista-vip" action="https://formsubmit.co/murillomazeredotik@gmail.com" method="POST">
+                    
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_subject" value="Novo Lead! - Voz do Cordeiro Lista VIP">
+                    <input type="hidden" name="_template" value="table">
+                    
+                    <div class="form-group">
+                        <input type="text" name="name" id="nome" placeholder="Seu nome completo" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="tel" name="whatsapp" id="whatsapp" placeholder="Seu WhatsApp (ex: 11999999999)" oninput="this.value = this.value.replace(/[^0-9]/g, '')" minlength="10" maxlength="11" required>
+                    </div>
+
+                    <!-- SELETOR DE ESTAMPA -->
+                    <div class="form-group">
+                        <span class="selector-label">Qual coleção/cor você prefere?</span>
+                        <div class="btn-group" id="grupo-estampa">
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Santo_Espirito_Branca', this)">Santo Espírito (Branca)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Santo_Espirito_Preta', this)">Santo Espírito (Preta)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Santo_Espirito_Dourada', this)">Santo Espírito (Dourada)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Jesus_Branca', this)">Jesus É O Caminho (Branca)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Jesus_Preta', this)">Jesus É O Caminho (Preta)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Branca', this)">Deus É Eterno (Branca)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Preta', this)">Deus É Eterno (Preta)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Bege', this)">Deus É Eterno (Bege)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Marrom', this)">Deus É Eterno (Marrom)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Ainda_nao_sei', this)">Ainda não sei</button>
+                        </div>
+                        <input type="hidden" name="modelo_interesse" id="modelo" class="hidden-input">
+                    </div>
+
+                    <!-- SELETOR DE TAMANHO -->
+                    <div class="form-group">
+                        <span class="selector-label">Selecione o tamanho</span>
+                        <div class="btn-group" id="grupo-tamanho">
+                            <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'P', this)">P</button>
+                            <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'M', this)">M</button>
+                            <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'G', this)">G</button>
+                            <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'GG', this)">GG</button>
+                            <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'XG', this)">XG</button>
+                        </div>
+                        <input type="hidden" name="tamanho" id="tamanho" class="hidden-input">
+                    </div>
+                    <button type="submit" class="submit-btn" id="btn-enviar">Garantir Lugar Na Lista</button>
+                </form>
+
+                <div id="success-msg">
+                    Sua presença foi confirmada na lista de espera.<br><br>Você será notificado pelo WhatsApp minutos antes da reabertura oficial do estoque. Fique atento.
                 </div>
             </div>
+        </div>
 
-            <div class="vip-title">Acesso Antecipado</div>
-            <div class="vip-subtitle">Inscreva-se com antecedência para garantir o seu lugar. Aqueles na lista terão preferência exclusiva de compra na abertura.</div>
-            
-
-            <!-- FORMULÁRIO -->
-            <form id="lista-vip" action="https://formsubmit.co/murillomazeredotik@gmail.com" method="POST">
-                
-                <!-- Campos extras úteis para o formsubmit funcionar bem (Ocultos para o cliente) -->
-                <input type="hidden" name="_captcha" value="false"> <!-- Tira a verificação "Sou humano" chata -->
-                <input type="hidden" name="_subject" value="Novo Lead! - Voz do Cordeiro Lista VIP"> <!-- Nome do assunto do e-mail -->
-                
-                <div class="form-group">
-                    <input type="text" name="name" id="nome" placeholder="Seu nome completo" required>
-                </div>
-                <div class="form-group">
-                    <input type="tel" name="whatsapp" id="whatsapp" placeholder="Seu WhatsApp (apenas números com DDD)" required>
-                </div>
-
-                <!-- SELETOR DE ESTAMPA -->
-                <div class="form-group">
-                    <span class="selector-label">Qual estampa você prefere?</span>
-                    <div class="btn-group" id="grupo-estampa">
-                        <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Estampa_Branca', this)">Branca</button>
-                        <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Estampa_Dourada', this)">Dourada</button>
-                        <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Estampa_Preta', this)">Preta</button>
-                        <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Ainda_nao_sei', this)">Ainda não sei</button>
-                    </div>
-                    <input type="hidden" name="modelo_interesse" id="modelo" class="hidden-input">
-                </div>
-
-                <!-- SELETOR DE TAMANHO -->
-                <div class="form-group">
-                    <span class="selector-label">Selecione o tamanho</span>
-                    <div class="btn-group" id="grupo-tamanho">
-                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'P', this)">P</button>
-                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'M', this)">M</button>
-                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'G', this)">G</button>
-                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'GG', this)">GG</button>
-                        <button type="button" class="btn-option size" onclick="selecionarOpcao('tamanho', 'XG', this)">XG</button>
-                    </div>
-                    <input type="hidden" name="tamanho" id="tamanho" class="hidden-input">
-                </div>
-                <button type="submit" class="submit-btn" id="btn-enviar">Garantir Lugar Na Lista</button>
-            </form>
-
-            <div id="success-msg">
-                Sua presença foi confirmada na lista de espera.<br><br>Você será notificado pelo WhatsApp minutos antes da reabertura oficial do estoque. Fique atento.
+        <!-- SOCIAL MEDIA SECTION -->
+        <div class="social-footer">
+            <h3>Nos Acompanhe</h3>
+            <div class="social-links">
+                <a href="https://www.instagram.com/vozdocordeiro_/" target="_blank" class="social-link" title="Instagram">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 448 512" fill="currentColor"><path d="M224.1 141c-63.6 0-114.9 51.3-114.9 114.9s51.3 114.9 114.9 114.9S339 319.5 339 255.9 287.7 141 224.1 141zm0 189.6c-41.1 0-74.7-33.5-74.7-74.7s33.5-74.7 74.7-74.7 74.7 33.5 74.7 74.7-33.6 74.7-74.7 74.7zm146.4-194.3c0 14.9-12 26.8-26.8 26.8-14.9 0-26.8-12-26.8-26.8s12-26.8 26.8-26.8 26.8 12 26.8 26.8zm76.1 27.2c-1.7-35.9-9.9-67.7-36.2-93.9-26.2-26.2-58-34.4-93.9-36.2-37-2.1-147.9-2.1-184.9 0-35.8 1.7-67.6 9.9-93.9 36.1s-34.4 58-36.2 93.9c-2.1 37-2.1 147.9 0 184.9 1.7 35.9 9.9 67.7 36.2 93.9s58 34.4 93.9 36.2c37 2.1 147.9 2.1 184.9 0 35.9-1.7 67.7-9.9 93.9-36.2 26.2-26.2 34.4-58 36.2-93.9 2.1-37 2.1-147.8 0-184.8zM398.8 388c-7.8 19.6-22.9 34.7-42.6 42.6-29.5 11.7-99.5 9-132.1 9s-102.7 2.6-132.1-9c-19.6-7.8-34.7-22.9-42.6-42.6-11.7-29.5-9-99.5-9-132.1s-2.6-102.7 9-132.1c7.8-19.6 22.9-34.7 42.6-42.6 29.5-11.7 99.5-9 132.1-9s102.7-2.6 132.1 9c19.6 7.8 34.7 22.9 42.6 42.6 11.7 29.5 9 99.5 9 132.1s2.7 102.7-9 132.1z"/></svg>
+                </a>
+                <a href="https://www.tiktok.com/@vozdocordeiro_" target="_blank" class="social-link" title="TikTok">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 448 512" fill="currentColor"><path d="M448 209.91a210.06 210.06 0 0 1-122.77-39.25V349.38A162.55 162.55 0 1 1 185 188.31v89.89a74.62 74.62 0 1 0 52.23 71.18V0l88 0a121.18 121.18 0 0 0 1.86 22.17h0A122.18 122.18 0 0 0 381 102.39a121.43 121.43 0 0 0 67 20.14Z"/></svg>
+                </a>
             </div>
+            <div class="social-handle">@vozdocordeiro_</div>
         </div>
 
     </div>
 
     <!-- ===== JAVASCRIPT DO SITE ===== -->
     <script>
-        // 1. BANCO DE IMAGENS (Frente, Verso e Modelo usando no Corpo)
-        // Substitua TODAS essas URLs pelas fotos da sua coleção
-        const fotos = {
-            wb: {
-                frente: "img/t-shirt-front-wb.webp",
-                verso: "img/t-shirt-back-wb-st.webp",
-                costas: "img/t-shirt-back-wb.webp",
-                corpo:  "img/t-shirt-wb-back-blonde.webp"
-            },
-            bw: {
-                frente: "img/t-shirt-hanger-front-wb.webp",
-                verso: "img/t-shirt-bw-back-jesus.webp",
-                corpo:  "img/t-shirt-bw-back-blonde.webp",
-                ambas: "img/t-shirt-both-front-blonde-2.webp"
-            },
-            gold: {
-                cabide: "img/t-shirt-hanger-front-wb.webp",
-                frente: "img/t-shirt-front-vc.webp",
-                verso: "img/t-shirt-gold-back.webp",
-                corpo:  "img/t-shirt-gold-back-blonde.webp",
-                espelho: "img/t-shirt-gold-back-mirror.webp",
-                ambas: "img/t-shirt-both-front-blonde-2.webp"
-            }
-        };
+        // Função para os botões de cores (Branca/Preta, Bege/Marrom)
+        function mudarCor(colecao, cor, btnElement) {
+            const card = btnElement.closest('.shirt-card');
+            
+            // Atualiza active nos botões
+            card.querySelectorAll('.color-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
 
-        // Função para os botões mudarem as imagens com efeito suave
-        function trocarImagem(camiseta, tipo) {
-            const imgEl = document.getElementById(`img-${camiseta}`);
+            // Oculta todos os grupos de thumbs e mostra o da cor certa
+            card.querySelectorAll('.thumb-group').forEach(group => group.classList.add('hidden'));
             
-            // Pequeno efeito visual de transição manual
+            const targetGroup = document.getElementById(`thumbs-${colecao}-${cor}`);
+            if(targetGroup) {
+                targetGroup.classList.remove('hidden');
+                
+                // Simula clique no primeiro thumb para atualizar a foto principal
+                const firstThumb = targetGroup.querySelector('.thumb');
+                if(firstThumb) {
+                    firstThumb.click();
+                }
+            }
+        }
+
+        // Função simplificada para trocar imagem via thumb
+        function trocarImagemSimples(colecao, src, thumbElement) {
+            const imgEl = document.getElementById(`img-${colecao}`);
+            
+            // Efeito suave
             imgEl.style.opacity = 0.5;
-            
             setTimeout(() => {
-                imgEl.src = fotos[camiseta][tipo];
+                imgEl.src = src;
                 imgEl.style.opacity = 1;
             }, 150);
             
-            // Controle visual de qual botão tá ativado
-            const thumbs = document.querySelectorAll(`[id^="thumb-"][id$="-${camiseta}"]`);
-            thumbs.forEach(t => t.classList.remove("active"));
-            
-            document.getElementById(`thumb-${tipo}-${camiseta}`).classList.add("active");
+            // Atualiza estado ativo apenas no grupo atual
+            const grupo = thumbElement.closest('.thumb-group');
+            grupo.querySelectorAll('.thumb').forEach(t => t.classList.remove('active'));
+            thumbElement.classList.add('active');
         }
 
         // --- SISTEMA DE ZOOM E LIGHTBOX ---
@@ -729,9 +974,59 @@
             document.getElementById(campo === 'estampa' ? 'modelo' : 'tamanho').value = valor;
         }
 
+        // --- VALIDAÇÃO DE TELEFONE (DDD BR + EUA) ---
+        function validarTelefone(telefone) {
+            let p = telefone.replace(/\D/g, ''); // Remove tudo que não for número
+            
+            if (p.length < 10 || p.length > 11) return false;
+            
+            // Verifica DDD do Brasil
+            let ddd = parseInt(p.substring(0, 2));
+            const dddsBR = [
+                11, 12, 13, 14, 15, 16, 17, 18, 19, 21, 22, 24, 27, 28, 31, 32, 33, 34, 
+                35, 37, 38, 41, 42, 43, 44, 45, 46, 47, 48, 49, 51, 53, 54, 55, 61, 62, 
+                63, 64, 65, 66, 67, 68, 69, 71, 73, 74, 75, 77, 79, 81, 82, 83, 84, 85, 
+                86, 87, 88, 89, 91, 92, 93, 94, 95, 96, 97, 98, 99
+            ];
+            
+            if (p.length === 11) {
+                // Celular Brasil (11 dígitos): Deve ter um DDD válido e começar com 9
+                if (!dddsBR.includes(ddd)) return false;
+                if (p[2] !== '9') return false;
+                return true;
+            } else if (p.length === 10) {
+                // Pode ser telefone fixo BR (10 dígitos) ou telefone EUA (10 dígitos)
+                let npa = parseInt(p.substring(0, 3));
+                let nxx = parseInt(p.substring(3, 6));
+                
+                // Validação EUA (NPA-NXX-XXXX, onde NPA e NXX não podem começar com 0 ou 1)
+                let isUS = (npa >= 200 && npa <= 999 && nxx >= 200 && nxx <= 999);
+                
+                // Validação Fixo BR (DDD válido e não começa com 9)
+                let isFixoBR = (dddsBR.includes(ddd) && p[2] >= '2' && p[2] <= '8');
+                
+                return isUS || isFixoBR;
+            }
+            return false;
+        }
+
         // --- ENVIO DO FORMULÁRIO (SUAVE E ELEGANTE) ---
         document.getElementById("lista-vip").addEventListener("submit", function(event) {
             event.preventDefault(); 
+
+            let inputModelo = document.getElementById("modelo").value;
+            let inputTamanho = document.getElementById("tamanho").value;
+            let inputTelefone = document.getElementById("whatsapp").value;
+
+            if(!inputModelo || !inputTamanho) {
+                alert("Por favor, selecione qual coleção de camiseta você quer e o seu tamanho.");
+                return;
+            }
+            
+            if(!validarTelefone(inputTelefone)) {
+                alert("Por favor, insira um WhatsApp válido (com DDD correto do Brasil ou EUA).");
+                return;
+            }
             
             let form = event.target;
             let botao = document.getElementById("btn-enviar");
@@ -760,6 +1055,16 @@
                 msgSucesso.style.display = "block";
             }
         });
+
+        function toggleThumbnails(btn) {
+            const card = btn.closest('.shirt-card');
+            card.classList.toggle('expanded');
+            if (card.classList.contains('expanded')) {
+                btn.innerText = "- Ver menos imagens";
+            } else {
+                btn.innerText = "+ Ver mais imagens";
+            }
+        }
     </script>
 </body>
 </html>
