@@ -3,6 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Coleção cristã Voz do Cordeiro. Entre na Lista VIP e receba acesso antecipado às próximas coleções exclusivas.">
+    <meta property="og:title" content="Voz do Cordeiro">
+    <meta property="og:description" content="Coleção cristã exclusiva. Garanta acesso antecipado através da Lista VIP.">
+    <meta property="og:type" content="website">
     <title>Esgotado - Voz do Cordeiro</title>
     <link rel="shortcut icon" href="./img/favicon.ico" type="image/x-icon">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -115,13 +119,16 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-radius: 12px;
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.03);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
         }
 
         .shirt-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 40px rgba(0,0,0,0.08);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(200, 169, 126, 0.08), 0 1px 3px rgba(0,0,0,0.02);
+            border-color: rgba(200, 169, 126, 0.25);
         }
 
         .shirt-title {
@@ -142,17 +149,18 @@
             overflow: hidden;
             position: relative;
             cursor: zoom-in;
+            border-radius: 8px;
         }
 
         .shirt-img {
             width: 100%;
             height: 100%;
             object-fit: cover;
-            transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.25s ease;
         }
 
         .image-container:hover .shirt-img {
-            transform: scale(1.08);
+            transform: scale(1.06);
         }
 
         .zoom-hint {
@@ -160,15 +168,95 @@
             bottom: 12px;
             right: 12px;
             color: var(--text-secondary);
-            font-size: 1.2rem;
+            font-size: 1rem;
             pointer-events: none;
-            background: rgba(255,255,255,0.8);
+            background: rgba(255,255,255,0.85);
+            backdrop-filter: blur(4px);
             border-radius: 50%;
-            width: 30px;
-            height: 30px;
+            width: 32px;
+            height: 32px;
             display: flex;
             align-items: center;
             justify-content: center;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+            z-index: 5;
+        }
+
+        /* Navigation Arrows (Animated & Minimalist) */
+        .nav-arrow {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%) scale(1);
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 0, 0, 0.04);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1), transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+        }
+
+        .nav-arrow svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.5;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+
+        .prev-arrow {
+            left: 10px;
+        }
+
+        .next-arrow {
+            right: 10px;
+        }
+
+        /* Hover states for container to fade in arrows */
+        .image-container:hover .nav-arrow {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* Micro-animations on hover */
+        .nav-arrow:hover {
+            background: rgba(255, 255, 255, 0.98);
+            box-shadow: 0 6px 16px rgba(0,0,0,0.1);
+        }
+
+        .prev-arrow:hover {
+            transform: translateY(-50%) translateX(-4px) scale(1.08);
+        }
+
+        .next-arrow:hover {
+            transform: translateY(-50%) translateX(4px) scale(1.08);
+        }
+
+        .nav-arrow:active {
+            transform: translateY(-50%) scale(0.95);
+        }
+
+        /* Mobile specific style (always show arrows for touch usability) */
+        @media (max-width: 768px) {
+            .nav-arrow {
+                opacity: 0.75 !important;
+                pointer-events: auto !important;
+                width: 36px;
+                height: 36px;
+            }
+            .prev-arrow { left: 8px; }
+            .next-arrow { right: 8px; }
         }
 
         .sold-out-overlay {
@@ -199,26 +287,27 @@
         }
 
         .thumb {
-            width: 50px;
-            height: 50px;
+            width: 52px;
+            height: 52px;
             object-fit: cover;
-            border: 2px solid transparent;
+            border: 1.5px solid transparent;
+            border-radius: 6px;
             cursor: pointer;
-            transition: all 0.3s ease;
-            opacity: 0.5;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            opacity: 0.55;
             background-color: #f5f5f5;
         }
 
         .thumb:hover {
-            opacity: 0.8;
-            transform: translateY(-2px);
+            opacity: 0.9;
+            transform: translateY(-1px);
         }
 
         .thumb.active {
             border-color: var(--gold);
             opacity: 1;
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 10px rgba(200, 169, 126, 0.15);
         }
 
 
@@ -243,7 +332,9 @@
             max-width: 600px;
             margin: 0 auto;
             position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.05);
+            border-radius: 16px;
+            border: 1px solid rgba(0,0,0,0.04);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.04);
             border-top: 3px solid var(--gold);
         }
 
@@ -331,14 +422,15 @@
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 8px;
         }
 
         .form-group input:focus {
             outline: none;
             border-color: var(--gold);
             background-color: var(--card-bg);
-            box-shadow: 0 0 0 3px rgba(200, 169, 126, 0.1);
+            box-shadow: 0 0 0 4px rgba(200, 169, 126, 0.12);
         }
 
         .form-group input::placeholder {
@@ -457,33 +549,34 @@
         }
 
         .btn-option {
-            padding: 10px 18px;
+            padding: 12px 20px;
             border: 1px solid var(--border-light);
             background-color: #FAFAFA;
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
-            font-size: 0.9rem;
+            font-size: 0.88rem;
             font-weight: 500;
             cursor: pointer;
-            transition: all 0.25s ease;
-            border-radius: 2px;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 8px;
             letter-spacing: 0.5px;
         }
 
         .btn-option:hover {
             border-color: var(--gold);
             color: var(--gold);
-            background-color: rgba(200, 169, 126, 0.05);
+            background-color: rgba(200, 169, 126, 0.03);
+            transform: translateY(-1px);
         }
 
         .btn-option.selected {
             background-color: var(--gold);
             border-color: var(--gold);
             color: #fff;
-            box-shadow: 0 4px 12px rgba(200, 169, 126, 0.3);
+            box-shadow: 0 6px 16px rgba(200, 169, 126, 0.25);
         }
 
-        /* Tamanhos: botões quadrados */
+        /* Tamanhos: botões circulares e modernos */
         .btn-option.size {
             width: 52px;
             height: 52px;
@@ -494,6 +587,7 @@
             font-size: 0.85rem;
             font-weight: 600;
             letter-spacing: 1px;
+            border-radius: 50%;
         }
 
         /* Campo hidden para envio do form */
@@ -506,6 +600,20 @@
             .vip-section { padding: 40px 20px; }
             .shirts-grid { gap: 40px; }
             .shirt-card { box-shadow: none; border-bottom: 1px solid var(--border-light); padding-bottom: 40px;}
+            
+            /* Melhoria de responsividade das abas */
+            .tabs-container {
+                justify-content: flex-start;
+                gap: 8px;
+                padding: 6px 16px;
+                margin-bottom: 30px;
+            }
+            .tab-btn {
+                padding: 8px 18px;
+                font-size: 0.78rem;
+                letter-spacing: 1px;
+                flex-shrink: 0;
+            }
         }
         /* ----- SELETOR DE CORES ----- */
         .color-variants {
@@ -515,21 +623,23 @@
             justify-content: center;
         }
         .color-btn {
-            width: 26px;
-            height: 26px;
+            width: 28px;
+            height: 28px;
             border-radius: 50%;
             cursor: pointer;
-            border: 2px solid transparent;
-            transition: transform 0.2s, border-color 0.2s, box-shadow 0.2s;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border: 2px solid #FAF9F6;
+            outline: 1px solid rgba(0,0,0,0.15);
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.05);
         }
         .color-btn:hover {
             transform: scale(1.1);
+            outline-color: var(--gold);
         }
         .color-btn.active {
-            transform: scale(1.2);
-            border-color: var(--gold);
-            box-shadow: 0 4px 10px rgba(200, 169, 126, 0.4);
+            transform: scale(1.15);
+            outline: 2px solid var(--gold);
+            box-shadow: 0 4px 10px rgba(200, 169, 126, 0.25);
         }
         .collection-desc {
             font-size: 0.85rem;
@@ -556,10 +666,10 @@
             width: fit-content;
             margin: 15px auto 5px auto;
             padding: 8px 20px;
-            background-color: var(--black);
+            background-color: var(--text-primary);
             color: #fff;
             border-radius: 20px;
-            border: 1px solid var(--black);
+            border: 1px solid var(--text-primary);
             font-size: 0.75rem;
             font-weight: 500;
             text-transform: uppercase;
@@ -621,6 +731,56 @@
             font-weight: 500;
             letter-spacing: 1.5px;
         }
+
+        /* ----- TABS DE CATEGORIAS ----- */
+        .tabs-container {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin-bottom: 40px;
+            flex-wrap: nowrap;
+            overflow-x: auto;
+            padding: 6px 12px;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        
+        .tabs-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .tab-btn {
+            padding: 10px 24px;
+            background-color: transparent;
+            border: 1px solid var(--border-light);
+            color: var(--text-secondary);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            font-weight: 500;
+            cursor: pointer;
+            border-radius: 30px;
+            transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .tab-btn:hover {
+            color: var(--text-primary);
+            border-color: var(--text-primary);
+            transform: translateY(-2px);
+        }
+
+        .tab-btn.active {
+            background-color: var(--text-primary);
+            border-color: var(--text-primary);
+            color: #ffffff;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+        }
+
+        /* Transição suave de opacidade nos cards */
+        .shirt-card {
+            transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease, display 0.4s allow-discrete;
+        }
     </style>
 </head>
 <body>
@@ -641,15 +801,30 @@
         
         <p class="subtitle">A coleção inicial arrematada pelos nossos primeiros convidados. <strong>Antecipe-se e confira os detalhes das peças para a nova leva.</strong></p>
 
+        <!-- ABAS DE FILTRAGEM -->
+        <div class="tabs-container">
+            <button class="tab-btn active" onclick="filtrarColecao('todos', this)">Todos</button>
+            <button class="tab-btn" onclick="filtrarColecao('espirito', this)">Santo Espírito</button>
+            <button class="tab-btn" onclick="filtrarColecao('deus', this)">Deus é Eterno</button>
+            <button class="tab-btn" onclick="filtrarColecao('legacy', this)">Legacy</button>
+            <button class="tab-btn" onclick="filtrarColecao('neymar', this)">100% Jesus Neymar</button>
+        </div>
+
         <!-- CAMISETAS -->
         <div class="shirts-grid">
             
             <!-- COLEÇÃO 1: SANTO ESPÍRITO -->
-            <div class="shirt-card">
+            <div class="shirt-card" data-category="espirito">
                 <div class="shirt-title">Santo Espírito</div>
                 <div class="collection-desc">Frente: Logo VC / Costas: Santo Espírito — Desce Como Fogo</div>
                 <div class="image-container" onclick="abrirZoom('espirito')">
-                    <img id="img-espirito" src="img/t-shirt-wb-back-blonde.webp" class="shirt-img" alt="Coleção Santo Espírito">
+                    <button class="nav-arrow prev-arrow" onclick="navegarImagem('espirito', -1, event)" aria-label="Imagem anterior">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <img id="img-espirito" src="img/NOVAS-CAMISETAS/t-shirt-vc-front.webp" class="shirt-img" alt="Coleção Santo Espírito">
+                    <button class="nav-arrow next-arrow" onclick="navegarImagem('espirito', 1, event)" aria-label="Próxima imagem">
+                        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
                     <div class="sold-out-overlay">Esgotado</div>
                     <div class="zoom-hint">⛶</div>
                 </div>
@@ -658,84 +833,164 @@
                     <button class="color-btn" onclick="mudarCor('espirito','preta',this)" style="background:#1a1a1a" title="Preta"></button>
                 </div>
                 <div class="thumb-group" id="thumbs-espirito-branca">
-                    <img src="img/t-shirt-front-wb.webp" class="thumb active" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente">
-                    <img src="img/22222.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Estúdio">
-                    <img src="img/t-shirt-back-wb-st.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Costas Cabide">
-                    <img src="img/t-shirt-back-wb.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Costas">
-                    <img src="img/t-shirt-wb-back-blonde.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Feminino">
+                    <img src="img/NOVAS-CAMISETAS/t-shirt-vc-front.webp" class="thumb active" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Cabide" loading="lazy">
+                    <img src="img/t-shirt-wb-back-blonde.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Feminino" loading="lazy">
+                    <img src="img/t-shirt-back-wb-st.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Costas Cabide" loading="lazy">
+                    <img src="img/t-shirt-back-wb.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Costas" loading="lazy">
                 </div>
                 <div class="thumb-group hidden" id="thumbs-espirito-preta">
-                    <img src="img/t-shirt-both-front-blonde.webp" class="thumb active" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Modelo">
-                    <img src="img/t-shirt-both-front-blonde-2.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Modelos">
-                    <img src="img/t-shirt-main-logo-front.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Cabide">
-                    <img src="img/cssa.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Costas Cabide">
-                    <img src="img/t-shirt-bw-back-jesus.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Masc Costas">
-                    <img src="img/t-shirt-bw-back-blonde.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Fem Costas">
-                    <img src="img/t-shirt-gold-back.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Gold">
-                    <img src="img/t-shirt-gold-back-blonde.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Costas Gold">
-                    <img src="img/t-shirt-gold-hanger.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Masc Gold">
-                    <img src="img/t-shirt-gold-back-mirror.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Fem Gold">
+                    <img src="img/t-shirt-both-front-blonde.webp" class="thumb active" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Modelo" loading="lazy">
+                    <img src="img/t-shirt-both-front-blonde-2.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Modelos" loading="lazy">
+                    <img src="img/t-shirt-hanger-front-wb.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Cabide" loading="lazy">
+                    <img src="img/t-shirt-front-vc.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Cabide Preta" loading="lazy">
+                    <img src="img/cssa.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Costas Cabide" loading="lazy">
+                    <img src="img/t-shirt-bw-back-jesus.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Masc Costas" loading="lazy">
+                    <img src="img/t-shirt-bw-back-blonde.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Fem Costas" loading="lazy">
+                    <img src="img/t-shirt-gold-back.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Frente Gold" loading="lazy">
+                    <img src="img/t-shirt-gold-back-blonde.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Costas Gold" loading="lazy">
+                    <img src="img/t-shirt-gold-hanger.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Masc Gold" loading="lazy">
+                    <img src="img/t-shirt-gold-back-mirror.webp" class="thumb" onclick="trocarImagemSimples('espirito',this.src,this)" title="Modelo Fem Gold" loading="lazy">
                 </div>
                 <button class="ver-mais-btn" onclick="toggleThumbnails(this)">+ Ver mais imagens</button>
                 <button class="join-waitlist-btn" onclick="document.getElementById('form-caixa').scrollIntoView({behavior:'smooth'})">Entrar na Lista</button>
             </div>
 
             <!-- COLEÇÃO 3: DEUS É ETERNO -->
-            <div class="shirt-card">
+            <div class="shirt-card" data-category="deus">
                 <div class="shirt-title">Deus É Eterno</div>
                 <div class="collection-desc">Frente: Voz Do Cordeiro / Costas: Deus É Eterno — O Princípio e o Fim</div>
                 <div class="image-container" onclick="abrirZoom('deus')">
-                    <img id="img-deus" src="img/image_compressed (8).webp" class="shirt-img" alt="Coleção Deus É Eterno">
+                    <button class="nav-arrow prev-arrow" onclick="navegarImagem('deus', -1, event)" aria-label="Imagem anterior">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <img id="img-deus" src="img/NOVAS-CAMISETAS/modelo-eterno-frente-br.webp" class="shirt-img" alt="Coleção Deus É Eterno" loading="lazy">
+                    <button class="nav-arrow next-arrow" onclick="navegarImagem('deus', 1, event)" aria-label="Próxima imagem">
+                        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
                     <div class="sold-out-overlay">Esgotado</div>
                     <div class="zoom-hint">⛶</div>
                 </div>
                 <div class="color-variants">
                     <button class="color-btn active" onclick="mudarCor('deus','branca',this)" style="background:#fff;border:1px solid #ccc" title="Branca"></button>
                     <button class="color-btn" onclick="mudarCor('deus','preta',this)" style="background:#1a1a1a" title="Preta"></button>
-                    <button class="color-btn" onclick="mudarCor('deus','bege',this)" style="background:#D2C4B3" title="Bege"></button>
-                    <button class="color-btn" onclick="mudarCor('deus','marrom',this)" style="background:#5C4033" title="Marrom"></button>
+                    <button class="color-btn" onclick="mudarCor('deus','marrom',this)" style="background:#5c4033" title="Marrom Claro Café"></button>
+                    <button class="color-btn" onclick="mudarCor('deus','bege',this)" style="background:#d7d0c0" title="Bege Stone"></button>
                 </div>
                 <div class="thumb-group" id="thumbs-deus-branca">
-                    <img src="img/image_compressed (15).webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente">
-                    <img src="img/deus-nov.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 2">
-                    <img src="img/image_compressed (16).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Frente">
-                    <img src="img/novas-variedades-deus.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Frente 2">
-                    <img src="img/image_compressed.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas 1">
-                    <img src="img/image_compressed (17).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Costas 1">
-                    <img src="img/image_compressed (7).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Costas 2">
-                    <img src="img/image_compressed (18).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas 1">
-                    <img src="img/image_compressed (10).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas 2">
-                    <img src="img/image_compressed (8).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Corpo Longe">
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-frente-br.webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Frente" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-b.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Costas" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-b1.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/eterno-branco-c.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Costas Cabide" loading="lazy">
                 </div>
                 <div class="thumb-group hidden" id="thumbs-deus-preta">
-                    <img src="img/image_compressed (13).webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 1">
-                    <img src="img/image_compressed (6).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 2">
-                    <img src="img/image_compressed (14).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Frente">
-                    <img src="img/image_compressed (5).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Frente Cabide">
-                    <img src="img/image_compressed (11).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Costas Cabide 1">
-                    <img src="img/image_compressed (19).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Costas Cabide 2">
-                    <img src="img/image_compressed (9).webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Costas">
-                </div>
-                <div class="thumb-group hidden" id="thumbs-deus-bege">
-                    <img src="img/image copy 6.webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Frente">
-                    <img src="img/vc-bege-costas-modelo.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas">
-                    <img src="img/costas-vc-bege.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Costas">
-                    <img src="img/image copy 3.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas 1">
-                    <img src="img/image copy 7.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas 2">
-                    <img src="img/nova-coleção-deus-bege.png" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas 3">
-                    
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-preto-f.webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Frente" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/vc-preto-f.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Frente Cabide" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/eterno-preto-c.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Costas Cabide" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-p.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-p1.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Costas" loading="lazy">
                 </div>
                 <div class="thumb-group hidden" id="thumbs-deus-marrom">
-                    <img src="img/image.webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 1">
-                    <img src="img/image copy.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente 2">
-                    <img src="img/image copy 4.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Frente">
-                    <img src="img/image copy 5.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Frente Cabide">
-                    <img src="img/vc-marrom.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Costas 1">
-                    <img src="img/vc-marrom-copy.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Costas 2">
-                    <img src="img/image copy 2.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas">
-                    <img src="img/nova-coleção-deus-marrom.png" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Cabide Costas">
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-marrom-f.webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Frente" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-m.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Costas" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/marrom-eterno-frente.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Frente Cabide" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/eterno-marrom-c.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Costas Cabide" loading="lazy">
+                </div>
+                <div class="thumb-group hidden" id="thumbs-deus-bege">
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-frente-bege.webp" class="thumb active" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Masc Frente" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/modelo-eterno-bege.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Modelo Fem Costas" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/vc-et-bege-stone.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Frente Cabide" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/bege-eterno.webp" class="thumb" onclick="trocarImagemSimples('deus',this.src,this)" title="Costas Cabide" loading="lazy">
                 </div>
                 <button class="ver-mais-btn" onclick="toggleThumbnails(this)">+ Ver mais imagens</button>
+                <button class="join-waitlist-btn" onclick="document.getElementById('form-caixa').scrollIntoView({behavior:'smooth'})">Entrar na Lista</button>
+            </div>
+
+            <!-- COLEÇÃO 2: LEGACY -->
+            <div class="shirt-card" data-category="legacy">
+                <!-- 1. Nome da Coleção -->
+                <div class="shirt-title">Legacy</div>
+                
+                <!-- 2. Descrição da estampa/detalhes -->
+                <div class="collection-desc">Frente: Brasão VC Gold minúsculo / Costas: Brasão VC Gold</div>
+                
+                <!-- 3. Imagem Principal e Zoom -->
+                <div class="image-container" onclick="abrirZoom('legacy')">
+                    <button class="nav-arrow prev-arrow" onclick="navegarImagem('legacy', -1, event)" aria-label="Imagem anterior">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <img id="img-legacy" src="img/NOVAS-CAMISETAS/modelo-brasao-branco.webp" class="shirt-img" alt="Coleção Legacy" loading="lazy">
+                    <button class="nav-arrow next-arrow" onclick="navegarImagem('legacy', 1, event)" aria-label="Próxima imagem">
+                        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                    <div class="sold-out-overlay">Esgotado</div>
+                    <div class="zoom-hint">⛶</div>
+                </div>
+                
+                <!-- 4. Seletor de Cores da Camiseta (Bolinhas coloridas) -->
+                <div class="color-variants">
+                    <button class="color-btn active" onclick="mudarCor('legacy','branca',this)" style="background:#fff;border:1px solid #ccc" title="Branca"></button>
+                    <button class="color-btn" onclick="mudarCor('legacy','preta',this)" style="background:#1a1a1a" title="Preta"></button>
+                </div>
+                
+                <!-- 5. Miniaturas (Thumbs) para a Camiseta BRANCA -->
+                <div class="thumb-group" id="thumbs-legacy-branca">
+                    <img src="img/NOVAS-CAMISETAS/modelo-brasao-branco.webp" class="thumb active" onclick="trocarImagemSimples('legacy',this.src,this)" title="Modelo Frente" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/brasão-branco-f.webp" class="thumb" onclick="trocarImagemSimples('legacy',this.src,this)" title="Frente Branca" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/brasão-branco-c.webp" class="thumb" onclick="trocarImagemSimples('legacy',this.src,this)" title="Costas Branca" loading="lazy">
+                </div>
+                
+                <!-- Grupo de miniaturas para a Camiseta PRETA (inicialmente oculto com a classe 'hidden') -->
+                <div class="thumb-group hidden" id="thumbs-legacy-preta">
+                    <img src="img/NOVAS-CAMISETAS/brasao-modelo-frente.webp" class="thumb active" onclick="trocarImagemSimples('legacy',this.src,this)" title="Frente Modelo" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/brasão-preto-f.webp" class="thumb" onclick="trocarImagemSimples('legacy',this.src,this)" title="Frente Preta" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/brasão-preto-c.webp" class="thumb" onclick="trocarImagemSimples('legacy',this.src,this)" title="Costas Preta" loading="lazy">
+                </div>
+                
+                <!-- Botão que direciona o cliente para preencher a lista de espera -->
+                <button class="join-waitlist-btn" onclick="document.getElementById('form-caixa').scrollIntoView({behavior:'smooth'})">Entrar na Lista</button>
+            </div>
+
+            <!-- COLEÇÃO 4: 100% JESUS NEYMAR -->
+            <div class="shirt-card" data-category="neymar">
+                <!-- 1. Nome da Coleção -->
+                <div class="shirt-title">100% Jesus Neymar</div>
+                
+                <!-- 2. Descrição da estampa/detalhes -->
+                <div class="collection-desc">Frente: Faixa 100% Jesus / Costas: Jesus 10</div>
+                
+                <!-- 3. Imagem Principal e Zoom -->
+                <div class="image-container" onclick="abrirZoom('neymar')">
+                    <button class="nav-arrow prev-arrow" onclick="navegarImagem('neymar', -1, event)" aria-label="Imagem anterior">
+                        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"></polyline></svg>
+                    </button>
+                    <!-- Imagem principal padrão (Branca) -->
+                    <img id="img-neymar" src="img/NOVAS-CAMISETAS/ney-b-frente.webp" class="shirt-img" alt="Coleção 100% Jesus Neymar" loading="lazy">
+                    <button class="nav-arrow next-arrow" onclick="navegarImagem('neymar', 1, event)" aria-label="Próxima imagem">
+                        <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"></polyline></svg>
+                    </button>
+                    <div class="sold-out-overlay">Em breve</div>
+                    <div class="zoom-hint">⛶</div>
+                </div>
+                
+                <!-- 4. Seletor de Cores da Camiseta (Bolinhas coloridas) -->
+                <div class="color-variants">
+                    <button class="color-btn active" onclick="mudarCor('neymar','branca',this)" style="background:#fff;border:1px solid #ccc" title="Branca"></button>
+                    <button class="color-btn" onclick="mudarCor('neymar','preta',this)" style="background:#1a1a1a" title="Preta"></button>
+                </div>
+                
+                <!-- 5. Miniaturas (Thumbs) para a Camiseta BRANCA -->
+                <div class="thumb-group" id="thumbs-neymar-branca">
+                    <img src="img/NOVAS-CAMISETAS/ney-b-frente.webp" class="thumb active" onclick="trocarImagemSimples('neymar',this.src,this)" title="Frente Modelo" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/ney-costas-branca.webp" class="thumb" onclick="trocarImagemSimples('neymar',this.src,this)" title="Modelo Costas" loading="lazy">
+                </div>
+                
+                <!-- Grupo de miniaturas para a Camiseta PRETA (inicialmente oculto com a classe 'hidden') -->
+                <div class="thumb-group hidden" id="thumbs-neymar-preta">
+                    <img src="img/NOVAS-CAMISETAS/ney-frente.webp" class="thumb active" onclick="trocarImagemSimples('neymar',this.src,this)" title="Frente Modelo" loading="lazy">
+                    <img src="img/NOVAS-CAMISETAS/ney-costas.webp" class="thumb" onclick="trocarImagemSimples('neymar',this.src,this)" title="Modelo Costas" loading="lazy">
+                </div>
+                
+                <!-- Botão que direciona o cliente para preencher a lista de espera -->
                 <button class="join-waitlist-btn" onclick="document.getElementById('form-caixa').scrollIntoView({behavior:'smooth'})">Entrar na Lista</button>
             </div>
 
@@ -782,8 +1037,18 @@
                             <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Santo_Espirito_Dourada', this)">Santo Espírito (Dourada)</button>
                             <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Branca', this)">Deus É Eterno (Branca)</button>
                             <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Preta', this)">Deus É Eterno (Preta)</button>
-                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Bege', this)">Deus É Eterno (Bege)</button>
-                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Marrom', this)">Deus É Eterno (Marrom)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Marrom', this)">Deus É Eterno (Marrom Claro Café)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Deus_Eterno_Bege', this)">Deus É Eterno (Bege Stone)</button>
+                            
+                            <!-- ================================================================= -->
+                            <!-- ADICIONE SUAS NOVAS OPÇÕES DE COMPRA/PREFERÊNCIA AQUI              -->
+                            <!-- ================================================================= -->
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Legacy_Branca', this)">Legacy (Branca)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Legacy_Preta', this)">Legacy (Preta)</button>
+                            
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Neymar_Branca', this)">100% Jesus Neymar (Branca)</button>
+                            <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Neymar_Preta', this)">100% Jesus Neymar (Preta)</button>
+                            
                             <button type="button" class="btn-option" onclick="selecionarOpcao('estampa', 'Ainda_nao_sei', this)">Ainda não sei</button>
                         </div>
                         <input type="hidden" name="modelo_interesse" id="modelo" class="hidden-input">
@@ -828,7 +1093,29 @@
 
     <!-- ===== JAVASCRIPT DO SITE ===== -->
     <script>
-        // Função para os botões de cores (Branca/Preta, Bege/Marrom)
+        // Função para filtrar as coleções através das abas
+        function filtrarColecao(categoria, btnElement) {
+            // Atualiza active nos botões de abas
+            const container = btnElement.closest('.tabs-container');
+            container.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+            btnElement.classList.add('active');
+
+            // Mostra ou oculta os cartões com fade suave
+            document.querySelectorAll('.shirt-card').forEach(card => {
+                const cardCategory = card.getAttribute('data-category');
+                if (categoria === 'todos' || cardCategory === categoria) {
+                    card.style.display = 'flex';
+                    // Força repaint para o fade funcionar ao reexibir
+                    void card.offsetWidth;
+                    card.style.opacity = '1';
+                } else {
+                    card.style.opacity = '0';
+                    card.style.display = 'none';
+                }
+            });
+        }
+
+        // Função para os botões de cores (Branca/Preta)
         function mudarCor(colecao, cor, btnElement) {
             const card = btnElement.closest('.shirt-card');
             
@@ -908,6 +1195,7 @@
             }
         }
 
+        // Fechar clicando no fundo
         function fecharBg(e) {
             if (e.target.id === 'lightbox') {
                 fecharZoom();
@@ -1023,6 +1311,27 @@
             } else {
                 btn.innerText = "+ Ver mais imagens";
             }
+        }
+
+        // Função para navegar pelas imagens da galeria (setas esquerda/direita)
+        function navegarImagem(colecao, direcao, event) {
+            if (event) event.stopPropagation(); // Evita disparar o zoom no card
+            
+            const card = document.getElementById(`img-${colecao}`).closest('.shirt-card');
+            const activeGroup = card.querySelector('.thumb-group:not(.hidden)');
+            if (!activeGroup) return;
+            
+            const thumbs = Array.from(activeGroup.querySelectorAll('.thumb'));
+            if (thumbs.length <= 1) return;
+            
+            const activeThumb = activeGroup.querySelector('.thumb.active');
+            let index = thumbs.indexOf(activeThumb);
+            
+            // Calcula o novo índice ciclicamente (esquerda ou direita)
+            index = (index + direcao + thumbs.length) % thumbs.length;
+            
+            // Simula clique no thumbnail para carregar a nova imagem e animar
+            thumbs[index].click();
         }
     </script>
 </body>
