@@ -16,13 +16,59 @@
     
     <style>
         :root {
-            --bg-color: #FAF9F6; /* Off-white / Bege bem claro, transmite paz */
-            --text-primary: #1A1A1A; /* Quase preto, mais suave que #000 */
+            /* Tema Claro (Padrão) */
+            --bg-color: #FAF9F6; 
+            --text-primary: #1A1A1A; 
             --text-secondary: #666666;
-            --gold: #C8A97E; /* Dourado luxuoso inspirado na coroa de espinhos */
+            --gold: #C8A97E; 
             --gold-hover: #b5956a;
             --card-bg: #FFFFFF;
             --border-light: #EAEaea;
+            
+            /* Variáveis específicas da seção de Planos (Claro) */
+            --pricing-bg: #F5F2EB; /* Creme levemente mais escuro para destaque suave */
+            --pricing-card-bg: #FFFFFF;
+            --pricing-border: #EAEaea;
+            --pricing-text-primary: #1A1A1A;
+            --pricing-text-secondary: #666666;
+            --pricing-desc-color: #555555;
+            --pricing-shadow: 0 15px 35px rgba(0, 0, 0, 0.04);
+            
+            /* Variáveis da Lista de Espera (Claro) */
+            --waitlist-wrapper-bg: #F7F6F2;
+            
+            /* Lightbox & Success Banner (Claro) */
+            --lightbox-bg: rgba(255, 255, 255, 0.98);
+            --success-bg: #F9FDF9;
+            --success-border: #D1EAD1;
+            --success-text: #3b7b3b;
+        }
+
+        body.dark-theme {
+            /* Tema Escuro */
+            --bg-color: #0E0D0C; 
+            --text-primary: #F5F3EF; 
+            --text-secondary: #9E9B95;
+            --card-bg: #161513; 
+            --border-light: rgba(255, 255, 255, 0.08);
+            
+            /* Variáveis específica da seção de Planos (Escuro) */
+            --pricing-bg: #0C0B0A;
+            --pricing-card-bg: #161513;
+            --pricing-border: rgba(255, 255, 255, 0.05);
+            --pricing-text-primary: #FFFFFF;
+            --pricing-text-secondary: #B5B2AC;
+            --pricing-desc-color: #A5A29B;
+            --pricing-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+            
+            /* Variáveis da Lista de Espera (Escuro) */
+            --waitlist-wrapper-bg: #131210;
+            
+            /* Lightbox & Success Banner (Escuro) */
+            --lightbox-bg: rgba(14, 13, 11, 0.98);
+            --success-bg: rgba(59, 123, 59, 0.15);
+            --success-border: rgba(59, 123, 59, 0.3);
+            --success-text: #8cd08c;
         }
 
         * {
@@ -36,8 +82,14 @@
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             text-align: center;
-            padding: 40px 15px 80px 15px;
+            padding: 20px 15px 80px 15px; /* Reduzido padding superior para acomodar cabeçalho */
             -webkit-font-smoothing: antialiased;
+            transition: background-color 0.4s ease, color 0.4s ease;
+        }
+
+        /* Transição de cores suave ao alternar o tema */
+        .shirt-card, .waitlist-wrapper, .vip-section, .social-footer, .theme-toggle, .social-link, .urgency-bar, .thumb, .btn-option, .form-group input {
+            transition: background-color 0.4s ease, color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease, transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         .container {
@@ -264,7 +316,8 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            background: rgba(255, 255, 255, 0.95);
+            background: var(--card-bg);
+            border: 1px solid var(--border-light);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             font-weight: 500;
@@ -316,14 +369,14 @@
             margin-top: 60px;
             padding-top: 80px;
             padding-bottom: 80px;
-            border-top: 1px solid rgba(0,0,0,0.05);
+            border-top: 1px solid var(--border-light);
             width: 100vw;
             position: relative;
             left: 50%;
             right: 50%;
             margin-left: -50vw;
             margin-right: -50vw;
-            background-color: #f7f6f2;
+            background-color: var(--waitlist-wrapper-bg);
         }
 
         .vip-section {
@@ -418,7 +471,7 @@
             width: 100%;
             padding: 16px 20px;
             border: 1px solid var(--border-light);
-            background-color: #FaFaFa;
+            background-color: var(--bg-color);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             font-size: 0.95rem;
@@ -466,9 +519,9 @@
             display: none;
             margin-top: 25px;
             padding: 25px;
-            background-color: #F9FDF9;
-            border: 1px solid #D1EAD1;
-            color: #3b7b3b;
+            background-color: var(--success-bg);
+            border: 1px solid var(--success-border);
+            color: var(--success-text);
             font-weight: 400;
             font-size: 0.95rem;
             line-height: 1.6;
@@ -485,7 +538,7 @@
             display: none;
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(255, 255, 255, 0.98);
+            background: var(--lightbox-bg);
             z-index: 9999;
             justify-content: center;
             align-items: center;
@@ -551,7 +604,7 @@
         .btn-option {
             padding: 12px 20px;
             border: 1px solid var(--border-light);
-            background-color: #FAFAFA;
+            background-color: var(--card-bg);
             color: var(--text-primary);
             font-family: 'Inter', sans-serif;
             font-size: 0.88rem;
@@ -667,7 +720,7 @@
             margin: 15px auto 5px auto;
             padding: 8px 20px;
             background-color: var(--text-primary);
-            color: #fff;
+            color: var(--bg-color);
             border-radius: 20px;
             border: 1px solid var(--text-primary);
             font-size: 0.75rem;
@@ -719,7 +772,7 @@
         }
         .social-link:hover {
             background-color: var(--text-primary);
-            color: #fff;
+            color: var(--bg-color);
             border-color: var(--text-primary);
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0,0,0,0.1);
@@ -773,7 +826,7 @@
         .tab-btn.active {
             background-color: var(--text-primary);
             border-color: var(--text-primary);
-            color: #ffffff;
+            color: var(--bg-color);
             box-shadow: 0 8px 20px rgba(0,0,0,0.06);
         }
 
@@ -781,9 +834,475 @@
         .shirt-card {
             transition: transform 0.4s ease, box-shadow 0.4s ease, opacity 0.4s ease, display 0.4s allow-discrete;
         }
+
+        /* ----- CABEÇALHO & TOGGLE ----- */
+        .header-nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1000px;
+            margin: 0 auto 30px auto;
+            padding: 15px 10px;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .header-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-primary);
+            text-decoration: none;
+            font-style: italic;
+        }
+
+        .theme-toggle {
+            background: none;
+            border: 1px solid var(--border-light);
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-primary);
+            cursor: pointer;
+            outline: none;
+            background-color: var(--card-bg);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.03);
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            border-color: var(--gold);
+            transform: scale(1.05);
+            box-shadow: 0 4px 12px rgba(200,169,126,0.15);
+        }
+
+        .theme-toggle svg {
+            width: 18px;
+            height: 18px;
+            stroke-width: 2.5;
+            fill: none;
+            stroke: currentColor;
+        }
+
+        /* Ícones reativos ao tema */
+        .theme-toggle .sun-icon {
+            display: block;
+        }
+
+        .theme-toggle .moon-icon {
+            display: none;
+        }
+
+        body.dark-theme .theme-toggle .sun-icon {
+            display: none;
+        }
+
+        body.dark-theme .theme-toggle .moon-icon {
+            display: block;
+        }
+
+        /* ----- SEÇÃO DE PLANOS E PREÇOS ESOC-ESCURA ----- */
+        .pricing-section-wrapper {
+            margin-top: 40px;
+            padding-top: 60px;
+            padding-bottom: 60px;
+            width: 100vw;
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw;
+            margin-right: -50vw;
+            background-color: var(--pricing-bg);
+            color: var(--pricing-text-primary);
+            font-family: 'Inter', sans-serif;
+            text-align: center;
+        }
+
+        .pricing-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .pricing-header {
+            margin-bottom: 50px;
+        }
+
+        .pricing-tag {
+            display: inline-block;
+            font-size: 0.75rem;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: var(--gold);
+            font-weight: 600;
+            margin-bottom: 12px;
+        }
+
+        .pricing-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.3rem;
+            font-weight: 600;
+            color: var(--pricing-text-primary);
+            margin-bottom: 15px;
+            letter-spacing: 1px;
+        }
+
+        .pricing-subtitle {
+            font-size: 0.98rem;
+            color: var(--pricing-text-secondary);
+            max-width: 600px;
+            margin: 0 auto;
+            line-height: 1.6;
+            font-weight: 300;
+        }
+
+        /* GRID DE PLANOS */
+        .plans-grid {
+            display: flex;
+            gap: 30px;
+            justify-content: center;
+            align-items: stretch;
+            margin-bottom: 60px;
+        }
+
+        .plan-card {
+            background-color: var(--pricing-card-bg);
+            border: 1px solid var(--pricing-border);
+            border-radius: 16px;
+            padding: 45px 35px;
+            flex: 1;
+            max-width: 400px;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            position: relative;
+            box-shadow: var(--pricing-shadow);
+            transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.4s ease;
+        }
+
+        .plan-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            border-color: rgba(200, 169, 126, 0.2);
+        }
+        
+        body.dark-theme .plan-card:hover {
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Destaque para o plano Anual */
+        .plan-card.highlighted {
+            border: 2px solid var(--gold);
+            box-shadow: 0 15px 40px rgba(200, 169, 126, 0.08), 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        body.dark-theme .plan-card.highlighted {
+            box-shadow: 0 15px 40px rgba(200, 169, 126, 0.08), 0 5px 15px rgba(0, 0, 0, 0.5);
+        }
+
+        .plan-card.highlighted:hover {
+            box-shadow: 0 25px 60px rgba(200, 169, 126, 0.12);
+            border-color: #DFBA8C;
+        }
+        
+        body.dark-theme .plan-card.highlighted:hover {
+            box-shadow: 0 25px 60px rgba(200, 169, 126, 0.15), 0 5px 15px rgba(0, 0, 0, 0.6);
+        }
+
+        /* Tag dourada metálica */
+        .gold-pill {
+            position: absolute;
+            top: -14px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: linear-gradient(135deg, #DFBA8C 0%, #C8A97E 50%, #9F825B 100%);
+            color: #0F0E0C;
+            font-size: 0.7rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            padding: 6px 16px;
+            border-radius: 20px;
+            box-shadow: 0 4px 10px rgba(200, 169, 126, 0.3);
+            text-transform: uppercase;
+        }
+
+        .plan-name {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.6rem;
+            font-weight: 600;
+            color: var(--pricing-text-primary);
+            margin-bottom: 8px;
+        }
+
+        .plan-desc {
+            font-size: 0.88rem;
+            color: var(--pricing-desc-color);
+            line-height: 1.4;
+            margin-bottom: 25px;
+            font-weight: 300;
+        }
+
+        .plan-price-wrapper {
+            margin-bottom: 30px;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .plan-price {
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: var(--pricing-text-primary);
+            display: inline-flex;
+            align-items: baseline;
+        }
+
+        .plan-price span {
+            font-size: 0.95rem;
+            color: var(--pricing-text-secondary);
+            font-weight: 300;
+            margin-left: 6px;
+        }
+
+        .benefit-list {
+            list-style: none;
+            padding: 0;
+            margin: 0 0 35px 0;
+            flex-grow: 1; /* Faz a lista crescer para alinhar os botões */
+        }
+
+        .benefit-list li {
+            font-size: 0.88rem;
+            color: var(--pricing-text-primary);
+            line-height: 1.5;
+            margin-bottom: 16px;
+            display: flex;
+            align-items: flex-start;
+            font-weight: 300;
+        }
+
+        .benefit-list li .check-icon {
+            color: var(--gold);
+            font-weight: 600;
+            margin-right: 10px;
+            flex-shrink: 0;
+            font-size: 1rem;
+        }
+
+        /* Botões */
+        .btn-plan {
+            display: block;
+            width: 100%;
+            padding: 16px 20px;
+            text-align: center;
+            border-radius: 8px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-decoration: none;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+            box-sizing: border-box;
+        }
+
+        .btn-plan-outline {
+            background-color: transparent;
+            color: var(--gold);
+            border: 1px solid var(--gold);
+        }
+
+        .btn-plan-outline:hover {
+            background-color: var(--gold);
+            color: #FFFFFF;
+            border-color: var(--gold);
+            transform: translateY(-2px);
+        }
+
+        .btn-plan-gold {
+            background: linear-gradient(135deg, #DFBA8C 0%, #C8A97E 50%, #9F825B 100%);
+            color: #0F0E0C;
+            border: none;
+            box-shadow: 0 4px 15px rgba(200, 169, 126, 0.2);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 2px;
+        }
+
+        .btn-plan-gold .btn-subtext {
+            font-size: 0.7rem;
+            font-weight: 400;
+            opacity: 0.85;
+            text-transform: none;
+            letter-spacing: 0.5px;
+        }
+
+        .btn-plan-gold:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 25px rgba(200, 169, 126, 0.4);
+            filter: brightness(1.05);
+        }
+
+        .btn-plan:active {
+            transform: translateY(1px);
+        }
+
+        /* Divisor Dourado Fino */
+        .gold-divider-container {
+            max-width: 600px;
+            margin: 50px auto 45px auto;
+            padding: 0 20px;
+        }
+
+        .gold-divider {
+            border: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(200, 169, 126, 0.3) 15%, rgba(200, 169, 126, 0.3) 85%, transparent);
+        }
+
+        /* Lista de Espera Bloco Discreto (Lei da distância/mistério) */
+        .waitlist-cta-block {
+            max-width: 550px;
+            margin: 0 auto 50px auto;
+            padding: 0 20px;
+        }
+
+        .waitlist-cta-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.15rem;
+            font-weight: 400;
+            font-style: italic;
+            color: var(--text-primary);
+            margin-bottom: 12px;
+            letter-spacing: 0.5px;
+        }
+
+        .waitlist-cta-desc {
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            line-height: 1.6;
+            margin-bottom: 22px;
+            font-weight: 300;
+        }
+
+        .btn-waitlist-outline {
+            background-color: transparent;
+            color: var(--gold);
+            border: 1px solid rgba(200, 169, 126, 0.4);
+            padding: 12px 28px;
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-waitlist-outline:hover {
+            border-color: var(--gold);
+            background-color: rgba(200, 169, 126, 0.05);
+            color: var(--text-primary);
+            box-shadow: 0 0 15px rgba(200, 169, 126, 0.1);
+        }
+
+        /* Rodapé de Segurança */
+        .security-seal {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            max-width: 580px;
+            margin: 0 auto;
+            padding: 0 20px;
+            color: var(--text-secondary);
+            font-size: 0.78rem;
+            line-height: 1.5;
+            font-weight: 300;
+        }
+
+        .security-seal svg {
+            width: 16px;
+            height: 16px;
+            fill: var(--gold);
+            flex-shrink: 0;
+        }
+
+        /* Responsividade para Planos */
+        @media (max-width: 768px) {
+            .pricing-section-wrapper {
+                margin-top: 40px;
+                padding-top: 60px;
+                padding-bottom: 60px;
+            }
+
+            .pricing-title {
+                font-size: 1.8rem;
+            }
+
+            .plans-grid {
+                flex-direction: column;
+                align-items: center;
+                gap: 35px;
+                padding: 0 10px;
+            }
+
+            .plan-card {
+                width: 100%;
+                max-width: 350px;
+                padding: 35px 25px;
+            }
+
+            .plan-card.highlighted {
+                /* Pequeno ajuste visual para o card de destaque no mobile */
+                transform: scale(1.02);
+            }
+            .plan-card.highlighted:hover {
+                transform: scale(1.02) translateY(-2px);
+            }
+
+            .gold-divider-container {
+                margin: 40px auto 35px auto;
+            }
+
+            .security-seal {
+                flex-direction: column;
+                text-align: center;
+                gap: 6px;
+            }
+        }
     </style>
 </head>
 <body>
+
+    <!-- Cabeçalho com Logo e Toggle de Tema -->
+    <header class="header-nav">
+        <a href="#" class="header-logo">Voz do Cordeiro</a>
+        <button class="theme-toggle" id="theme-toggle-btn" aria-label="Alternar Tema">
+            <!-- Ícone Sol -->
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <circle cx="12" cy="12" r="5"></circle>
+                <line x1="12" y1="1" x2="12" y2="3"></line>
+                <line x1="12" y1="21" x2="12" y2="23"></line>
+                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                <line x1="1" y1="12" x2="3" y2="12"></line>
+                <line x1="21" y1="12" x2="23" y2="12"></line>
+                <line x1="4.22" y1="19.72" x2="5.64" y2="18.3"></line>
+                <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+            </svg>
+            <!-- Ícone Lua -->
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+            </svg>
+        </button>
+    </header>
 
     <!-- Lightbox (Galeria Tela Cheia) -->
     <div class="lightbox" id="lightbox" onclick="fecharBg(event)">
@@ -796,10 +1315,92 @@
         
         <div class="urgency-bar">
             <span class="pulse-dot"></span> 
-            Lista VIP próxima do encerramento
+            Acesso imediato à Comunidade disponível
         </div>
-        
-        <p class="subtitle">A coleção inicial arrematada pelos nossos primeiros convidados. <strong>Antecipe-se e confira os detalhes das peças para a nova leva.</strong></p>
+
+        <!-- SEÇÃO DE PLANOS E PREÇOS DE ALTA CONVERSÃO (DESTAQUE NO TOPO) -->
+        <div class="pricing-section-wrapper">
+            <div class="pricing-container">
+                <div class="pricing-header">
+                    <span class="pricing-tag">Membresia</span>
+                    <h2 class="pricing-title">Faça parte da nossa Comunidade</h2>
+                    <p class="pricing-subtitle">Um refúgio diário para acalmar a mente, encontrar paz espiritual e nutrir sua alma com conteúdos estéticos inspiradores.</p>
+                </div>
+
+                <div class="plans-grid">
+                    <!-- PLANO MENSAL -->
+                    <div class="plan-card">
+                        <h3 class="plan-name">Membro Mensal</h3>
+                        <p class="plan-desc">O seu refúgio e alimento espiritual diário</p>
+                        
+                        <div class="plan-price-wrapper">
+                            <div class="plan-price">R$ 19,90<span>/ mês</span></div>
+                        </div>
+
+                        <ul class="benefit-list">
+                            <li><span class="check-icon">✓</span> Áudio exclusivo de direcionamento todas as manhãs</li>
+                            <li><span class="check-icon">✓</span> Cenários e reflexões estéticas diárias no seu celular</li>
+                            <li><span class="check-icon">✓</span> Ambiente seguro e livre de distrações ou spams</li>
+                            <li><span class="check-icon">✓</span> Cancelamento livre com um clique no painel, sem contratos</li>
+                        </ul>
+
+                        <a href="https://pay.cakto.com.br/a375o96_942311" target="_blank" class="btn-plan btn-plan-outline">Entrar para a Comunidade</a>
+                    </div>
+
+                    <!-- PLANO ANUAL (O GRANDE DESTAQUE) -->
+                    <div class="plan-card highlighted">
+                        <span class="gold-pill">MAIS ECONÔMICO</span>
+                        <h3 class="plan-name">Membro Anual</h3>
+                        <p class="plan-desc">Blindagem mental e caminhada firme por um ano inteiro</p>
+                        
+                        <div class="plan-price-wrapper">
+                            <div class="plan-price">R$ 197,90<span>/ ano</span></div>
+                        </div>
+
+                        <ul class="benefit-list">
+                            <li><span class="check-icon">✓</span> Todos os benefícios do plano mensal inclusos</li>
+                            <li><span class="check-icon">✓</span> Economize mais de 3 meses de assinatura garantida</li>
+                            <li><span class="check-icon">✓</span> Acesso prioritário vitalício a futuros projetos exclusivos</li>
+                            <li><span class="check-icon">✓</span> Suporte VIP direto com o administrador</li>
+                        </ul>
+
+                        <a href="https://pay.cakto.com.br/vqey97d" target="_blank" class="btn-plan btn-plan-gold">
+                            Garantir Acesso Anual
+                            <span class="btn-subtext">(Economizar 3 Meses)</span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- DIVISOR DOURADO -->
+                <div class="gold-divider-container">
+                    <hr class="gold-divider">
+                </div>
+
+                <!-- LISTA DE ESPERA DE BASTIDORES -->
+                <div class="waitlist-cta-block">
+                    <h4 class="waitlist-cta-title">Acesso aos Bastidores da Voz do Cordeiro</h4>
+                    <p class="waitlist-cta-desc">Para os membros que desejam receber prioridade máxima e atualizações em primeira mão sobre os nossos próximos projetos e coleções exclusivas com vagas restritas.</p>
+                    <button class="btn-waitlist-outline" onclick="document.getElementById('form-caixa').scrollIntoView({behavior:'smooth'})">
+                        Entrar na Lista de Espera Oficial
+                    </button>
+                </div>
+
+                <!-- RODAPÉ DE SEGURANÇA -->
+                <div class="security-seal">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                        <path d="M12 2C9.243 2 7 4.243 7 7v3H6c-1.103 0-2 .897-2 2v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-8c0-1.103-.897-2-2-2h-1V7c0-2.757-2.243-5-5-5zM9 7c0-1.654 1.346-3 3-3s3 1.346 3 3v3H9V7zm3 9c-.828 0-1.5-.672-1.5-1.5S11.172 13 12 13s1.5.672 1.5 1.5S12.828 16 12 16z"/>
+                    </svg>
+                    <span>Ambiente 100% Seguro e Blindado. Seus dados estão protegidos e o acesso é enviado imediatamente após o Pix.</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- SEÇÃO DE PEÇAS EXCLUSIVAS (ESGOTADAS) -->
+        <div style="margin-top: 60px; margin-bottom: 30px;">
+            <p class="subtitle" style="margin-bottom: 10px; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem; font-weight: 500; color: var(--gold);">Coleções de Vestuário Estético</p>
+            <h2 style="font-family: 'Playfair Display', serif; font-size: 2.2rem; font-weight: 600; color: var(--text-primary); margin-bottom: 15px; letter-spacing: 1px;">Peças Exclusivas</h2>
+            <p class="subtitle" style="margin-bottom: 20px;">A coleção inicial arrematada pelos nossos primeiros convidados. <strong>Antecipe-se e confira os detalhes das peças para a nova leva.</strong></p>
+        </div>
 
         <!-- ABAS DE FILTRAGEM -->
         <div class="tabs-container">
@@ -1337,6 +1938,25 @@
             // Simula clique no thumbnail para carregar a nova imagem e animar
             thumbs[index].click();
         }
+
+        // --- SISTEMA DE ALTA CONVERSÃO DE TEMAS (CLARO/ESCURO) ---
+        const themeToggleBtn = document.getElementById('theme-toggle-btn');
+        
+        // Verifica se há um tema salvo, caso contrário usa a preferência do sistema
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        
+        if (savedTheme === 'dark' || (!savedTheme && systemPrefersDark)) {
+            document.body.classList.add('dark-theme');
+        } else {
+            document.body.classList.remove('dark-theme');
+        }
+
+        themeToggleBtn.addEventListener('click', () => {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+        });
     </script>
 </body>
 </html>
